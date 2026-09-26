@@ -1,0 +1,10 @@
+# File locali e del sistema
+.DS_Store
+Thumbs.db
+
+# Dipendenze e file di sviluppo
+node_modules/
+dist/
+build/
+.env
+.env.*
