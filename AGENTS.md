@@ -6,7 +6,10 @@ This is a lightweight static website for **Allieri & Pagliari — Psicologhe**. 
 
 - `index.html` contains the page structure and Italian content.
 - `styles.css` contains the complete responsive visual system: CSS variables, layout, typography, illustrations, and media queries.
-- `script.js` contains small progressive-enhancement interactions, currently the mobile navigation toggle.
+- `script.js` contains small progressive-enhancement interactions, currently the accessible mobile navigation toggle.
+- `privacy.html` is a draft privacy information page. It contains explicit placeholders and must not be treated as publish-ready until the indicated legal and operational data are confirmed.
+- `DOMANDE_E_DUBBI.md` is the live checklist of client confirmations and publication blockers.
+- `README.md` documents the current project status, local preview, checks, and deployment prerequisites.
 - `Questionario operativo per il sito dello studio.docx` is the client brief. Treat its professional details and contact information as source material; do not edit it unless explicitly asked.
 
 Place future static assets in an `assets/` directory, grouped by purpose (for example, `assets/images/` and `assets/icons/`). Use relative paths.
@@ -27,7 +30,7 @@ Use two-space indentation in HTML, CSS, and JavaScript. Prefer semantic HTML (`h
 
 Use lowercase kebab-case for CSS classes, filenames, and asset names: `.contact-card`, `portrait-valentina.svg`. Keep design tokens in `:root` and reuse existing palette variables rather than introducing raw color values. Keep JavaScript small, dependency-free, and scoped to a clear UI behavior.
 
-All visitor-facing copy is Italian and uses a professional, formal tone (`Lei`). Avoid unsupported clinical claims and verify professional credentials, prices, hours, and contact details with the client before publishing.
+All visitor-facing copy is Italian and uses a professional, formal tone (`Lei`). Avoid unsupported clinical claims and verify professional credentials, prices, hours, contact details, and legal/privacy text with the client before publishing. Do not invent placeholder contact data, domains, legal bases, or retention periods.
 
 ## Testing Guidelines
 
