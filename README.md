@@ -67,7 +67,7 @@ Non è presente una suite automatica. Prima di ogni pubblicazione eseguire i con
 
 ## Stato di pubblicazione
 
-Il sito è pronto per una **anteprima noindex**, ma non per la pubblicazione definitiva finché non saranno completati i punti presenti in [`DOMANDE_E_DUBBI.md`](DOMANDE_E_DUBBI.md), in particolare:
+Il sito è pronto per una **anteprima noindex**, ma non per la pubblicazione definitiva finché non saranno completati i punti della checklist locale del progetto, in particolare:
 
 - URL e configurazione del Google Form, comprese le informazioni privacy;
 - recapito privacy, hosting, conservazione e validazione dell’informativa;
@@ -75,6 +75,8 @@ Il sito è pronto per una **anteprima noindex**, ma non per la pubblicazione def
 - dominio pubblico definitivo e configurazione DNS;
 - Google Business Profile e configurazione SEO tecnica;
 - rimozione di `noindex` e aggiornamento di `robots.txt` al passaggio alla versione definitiva.
+
+La checklist e il questionario del cliente sono conservati solo nella cartella locale ignorata `private/`; non devono essere aggiunti al repository pubblico.
 
 ## SEO e ricerche AI
 

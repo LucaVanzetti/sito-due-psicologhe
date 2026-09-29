@@ -8,9 +8,8 @@ This is a lightweight static website for **Allieri & Pagliari — Psicologhe**. 
 - `styles.css` contains the complete responsive visual system: CSS variables, layout, typography, illustrations, and media queries.
 - `script.js` contains small progressive-enhancement interactions, currently the accessible mobile navigation toggle.
 - `privacy.html` is a draft privacy information page. It contains explicit placeholders and must not be treated as publish-ready until the indicated legal and operational data are confirmed.
-- `DOMANDE_E_DUBBI.md` is the live checklist of client confirmations and publication blockers.
+- La checklist delle conferme del cliente e i materiali di briefing sono conservati localmente in `private/` e non devono essere aggiunti al repository pubblico.
 - `README.md` documents the current project status, local preview, checks, and deployment prerequisites.
-- `Questionario operativo per il sito dello studio.docx` is the client brief. Treat its professional details and contact information as source material; do not edit it unless explicitly asked.
 
 Place future static assets in an `assets/` directory, grouped by purpose (for example, `assets/images/` and `assets/icons/`). Use relative paths.
 
