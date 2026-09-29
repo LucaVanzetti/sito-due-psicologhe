@@ -1,11 +1,11 @@
 :root {
-  --plum:#4c3d49;
-  --mauve:#a78fa3;
-  --olive:#92977e;
-  --rose:#e7d9d4;
-  --cream:#f8f4ee;
-  --ink:#302a2e;
-  --line:rgba(76,61,73,.2)
+  --plum:#30534d;
+  --mauve:#c77d2e;
+  --olive:#9a9a6d;
+  --rose:#f0d7bb;
+  --cream:#fbf4e9;
+  --ink:#2d3532;
+  --line:rgba(48,83,77,.2)
 }
 * {
   box-sizing:border-box

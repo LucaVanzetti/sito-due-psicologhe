@@ -1,0 +1,4 @@
+# Anteprima riservata alla revisione: chiediamo ai crawler di non indicizzare il sito.
+# Non costituisce una misura di accesso o di riservatezza.
+User-agent: *
+Disallow: /
