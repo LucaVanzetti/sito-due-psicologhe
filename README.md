@@ -1,6 +1,6 @@
 # Allieri & Pagliari — Psicologhe
 
-Sito statico dello studio di Valentina Allieri e Silvia Pagliari. Il progetto non usa dipendenze né build tool.
+Sito statico dello studio di Valentina Allieri e Silvia Pagliari. Il progetto non usa dipendenze né build tool. I font sono ospitati localmente in `assets/fonts/`, così le pagine non caricano Google Fonts dal browser del visitatore.
 
 ## Pagine
 
