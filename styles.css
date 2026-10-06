@@ -720,14 +720,10 @@ footer>p {
   margin:0
 }
 .profile-detail .portrait-profile {
-  width:min(calc(100% - 80px),430px);
+  width:min(calc(100% - 80px),345px);
   height:460px;
   min-height:0;
-  margin:48px auto;
-  background:var(--cream)
-}
-.profile-detail .portrait-profile img {
-  object-fit:contain
+  margin:48px auto
 }
 .profile-detail>div:last-child {
   padding:100px max(25px,10vw);
