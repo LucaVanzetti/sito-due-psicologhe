@@ -75,8 +75,8 @@ nav>a:hover {
   color:var(--mauve)
 }
 .nav-cta {
-  background:var(--plum);
-  color:white;
+  background:var(--gold);
+  color:var(--ink);
   padding:12px 17px;
   border-radius:50px
 }
@@ -147,8 +147,8 @@ h1 em,h2 em {
   transform:translateY(-2px)
 }
 .button-dark {
-  color:white;
-  background:var(--plum)
+  color:var(--ink);
+  background:var(--gold)
 }
 .button span {
   font-size:18px
@@ -235,8 +235,8 @@ h1 em,h2 em {
   margin-bottom:27px
 }
 .approach {
-  background:var(--olive);
-  color:#fff;
+  background:var(--sand);
+  color:var(--ink);
   display:grid;
   grid-template-columns:1fr 1fr;
   min-height:680px
@@ -246,10 +246,10 @@ h1 em,h2 em {
   align-self:center
 }
 .approach .eyebrow {
-  color:#f2eee7
+  color:var(--mauve)
 }
 .approach h2 em {
-  color:#e7d9d4
+  color:var(--mauve)
 }
 .approach-copy>p:not(.eyebrow) {
   max-width:460px;
@@ -257,10 +257,10 @@ h1 em,h2 em {
 }
 .approach-copy .text-link {
   margin-top:15px;
-  border-color:white
+  border-color:var(--plum)
 }
 .approach-art {
-  background:#78816a;
+  background:#e7bd67;
   position:relative;
   overflow:hidden
 }
@@ -341,7 +341,7 @@ h1 em,h2 em {
   display:flex;
   align-items:flex-end;
   font:italic 31px/1.05 Fraunces,serif;
-  color:white;
+  color:var(--ink);
   position:relative;
   overflow:hidden
 }
@@ -411,8 +411,8 @@ h1 em,h2 em {
   margin-bottom:16px
 }
 .contact {
-  background:var(--plum);
-  color:var(--cream);
+  background:var(--sand);
+  color:var(--ink);
   padding:120px max(25px,10vw);
   display:grid;
   grid-template-columns:1.25fr .75fr;
@@ -788,11 +788,11 @@ footer>p {
   border-bottom:1px solid var(--plum)
 }
 .olive-block {
-  background:var(--olive);
-  color:var(--cream)
+  background:var(--sand);
+  color:var(--ink)
 }
 .olive-block .eyebrow {
-  color:var(--cream)
+  color:var(--mauve)
 }
 .olive-block h2 em {
   color:var(--rose)
@@ -809,8 +809,8 @@ footer>p {
   text-align:left
 }
 .cta-band {
-  background:var(--plum);
-  color:var(--cream);
+  background:var(--sand);
+  color:var(--ink);
   padding:105px 10vw;
   display:flex;
   align-items:center;
@@ -866,15 +866,15 @@ footer>p {
   margin-top:14px
 }
 .contact-info {
-  background:var(--olive);
-  color:var(--cream);
+  background:var(--sand);
+  color:var(--ink);
   padding:100px max(25px,12vw);
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10vw
 }
 .contact-info .eyebrow {
-  color:var(--cream)
+  color:var(--mauve)
 }
 .contact-info h2 em {
   color:var(--rose)
@@ -1132,4 +1132,130 @@ button:focus-visible {
   font-weight: 500;
   font-display: swap;
   src: url('assets/fonts/fraunces-500.ttf') format('truetype');
+}
+
+/* Aggiornamento visivo: palette calda, gerarchia più leggibile e contrasti senza testo chiaro su verde. */
+:root {
+  --plum:#234b44;
+  --mauve:#a84f2d;
+  --olive:#d8c98d;
+  --rose:#efd6bd;
+  --cream:#fbf4e9;
+  --ink:#20332e;
+  --line:rgba(32,51,46,.23);
+  --gold:#e7bd67;
+  --sand:#e9dccb;
+}
+body {
+  background:var(--cream);
+}
+nav {
+  font-size:14px;
+  font-weight:500;
+}
+nav>a[aria-current="page"] {
+  color:var(--mauve);
+  border-bottom:2px solid currentColor;
+}
+.eyebrow {
+  color:var(--mauve);
+  font-weight:600;
+}
+h1,h2 {
+  letter-spacing:-.045em;
+}
+.intro,
+.statement>div>p,
+.approach-copy>p:not(.eyebrow),
+.contact>div>p:not(.eyebrow),
+.page-hero p:not(.eyebrow),
+.page-intro>p:last-child,
+.content-block>div:nth-child(2),
+.profile-detail p:not(.eyebrow),
+.bio-hero>div:last-child>p:not(.eyebrow),
+.contact-info p {
+  font-size:18px;
+  line-height:1.7;
+}
+.button-dark {
+  background:var(--gold);
+  color:var(--ink);
+  font-weight:600;
+}
+.button-dark:hover,
+.button-dark:focus-visible {
+  background:#f0cd83;
+}
+.hero-photo {
+  background-image:linear-gradient(rgba(95,57,37,.14),rgba(95,57,37,.54)),url('assets/images/studio/sala-colloqui-scrivania.jpeg');
+}
+.approach {
+  background:var(--sand);
+  color:var(--ink);
+}
+.approach .eyebrow,
+.approach h2 em {
+  color:var(--mauve);
+}
+.approach-copy .text-link {
+  border-color:var(--plum);
+}
+.approach-art {
+  background:#e7bd67;
+  display:grid;
+  place-items:center;
+  padding:clamp(28px,5vw,75px);
+}
+.approach-art img {
+  display:block;
+  width:min(100%,620px);
+  height:auto;
+  filter:drop-shadow(0 18px 22px rgba(32,51,46,.12));
+}
+.contact,
+.cta-band,
+.contact-info,
+.olive-block {
+  background:var(--sand);
+  color:var(--ink);
+}
+.contact .eyebrow,
+.olive-block .eyebrow,
+.contact-info .eyebrow {
+  color:var(--mauve);
+}
+.contact h2 em,
+.cta-band h2 em,
+.contact-info h2 em,
+.olive-block h2 em {
+  color:var(--mauve);
+}
+.contact-card {
+  border-color:rgba(32,51,46,.42);
+  background:rgba(251,244,233,.52);
+}
+.button-light {
+  background:var(--gold);
+  color:var(--ink);
+  font-weight:600;
+}
+.button-light:hover,
+.button-light:focus-visible {
+  background:#f0cd83;
+}
+.contact-card small {
+  opacity:1;
+}
+.cta-band .button-light {
+  background:var(--gold);
+}
+footer {
+  background:#f6eadb;
+}
+@media(max-width:800px) {
+  .approach-art {
+    min-height:0;
+    grid-row:2;
+    padding:38px 26px;
+  }
 }
