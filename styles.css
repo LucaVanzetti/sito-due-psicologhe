@@ -1,11 +1,13 @@
 :root {
-  --plum:#30534d;
-  --mauve:#bd681e;
-  --olive:#9a9a6d;
-  --rose:#f4d7b5;
-  --cream:#fff8ee;
-  --ink:#2d3532;
-  --line:rgba(48,83,77,.2)
+  --plum:#5b2d70;
+  --mauve:#921d66;
+  --olive:#86a50b;
+  --rose:#edc383;
+  --cream:#fff4df;
+  --ink:#35213e;
+  --line:rgba(53,33,62,.23);
+  --gold:#d98212;
+  --sand:#f0d6aa
 }
 * {
   box-sizing:border-box
@@ -852,7 +854,7 @@ footer>p {
   padding:42px
 }
 .contact-options article+article {
-  background:#d8ded0
+  background:#a9c8d2
 }
 .contact-options h2 {
   font-size:50px
@@ -1080,7 +1082,7 @@ button:focus-visible {
 
 .emergency-notice {
   padding: 24px max(25px, 12vw);
-  background: #f7e6cf;
+  background: #f6dda2;
   color: var(--ink);
   text-align: center;
 }
@@ -1135,17 +1137,6 @@ button:focus-visible {
 }
 
 /* Aggiornamento visivo: palette calda, gerarchia più leggibile e contrasti senza testo chiaro su verde. */
-:root {
-  --plum:#234b44;
-  --mauve:#a84f2d;
-  --olive:#d8c98d;
-  --rose:#efd6bd;
-  --cream:#fbf4e9;
-  --ink:#20332e;
-  --line:rgba(32,51,46,.23);
-  --gold:#e7bd67;
-  --sand:#e9dccb;
-}
 body {
   background:var(--cream);
 }
@@ -1250,7 +1241,7 @@ h1,h2 {
   background:var(--gold);
 }
 footer {
-  background:#f6eadb;
+  background:#f7dfb6;
 }
 @media(max-width:800px) {
   .approach-art {
@@ -1339,5 +1330,144 @@ footer {
   .journey-illustration {
     margin:28px 0 0;
     max-width:260px;
+  }
+}
+
+/* Illustrazioni del briefing: cornice visiva condivisa e palette coordinata. */
+.approach-art {
+  background: var(--cream);
+}
+.approach-art img {
+  height: 100%;
+  max-height: 680px;
+  object-fit: cover;
+  width: 100%;
+  filter: saturate(.78) sepia(.12) contrast(.98);
+}
+.working-approach {
+  align-items: center;
+  grid-template-columns: minmax(130px, 220px) 1fr 1fr minmax(130px, 220px);
+}
+.working-side-art {
+  aspect-ratio: 3 / 4;
+  margin: 0;
+  overflow: hidden;
+}
+.working-side-art-right {
+  aspect-ratio: 1 / 1;
+}
+.working-side-art img,
+.intervention-illustration img {
+  filter: saturate(.75) sepia(.1) contrast(.98);
+}
+.working-side-art img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+.steps-illustration {
+  background: var(--cream);
+}
+.steps-illustration img {
+  object-position: center;
+  filter: saturate(.78) sepia(.1) contrast(.98);
+}
+.intervention-illustration {
+  background: var(--cream);
+}
+.intervention-illustration img {
+  object-position: center;
+}
+.journey-cta {
+  isolation: isolate;
+  min-height: 540px;
+  overflow: hidden;
+  position: relative;
+}
+.journey-cta::before {
+  background: rgba(251, 244, 233, .7);
+  content: "";
+  inset: 0;
+  position: absolute;
+  z-index: -1;
+}
+.journey-cta > :not(.journey-illustration) {
+  position: relative;
+  z-index: 1;
+}
+.journey-illustration {
+  inset: 0;
+  max-width: none;
+  position: absolute;
+  z-index: -2;
+}
+.journey-illustration img {
+  filter: saturate(.75) sepia(.08) contrast(.98);
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+@media (max-width: 800px) {
+  .working-approach {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .working-approach > div {
+    grid-column: 1 / -1;
+  }
+  .working-side-art {
+    margin-top: 26px;
+    max-height: 240px;
+  }
+  .journey-cta {
+    min-height: 500px;
+  }
+}
+
+/* I ritratti in homepage mantengono collo e spalle, senza il ritaglio ravvicinato desktop. */
+.people .portrait {
+  height: 500px;
+}
+.people .portrait-photo img {
+  object-position: center 58%;
+}
+@media (max-width: 800px) {
+  .people .portrait {
+    height: 420px;
+  }
+}
+
+/* Nell'illustrazione sul rapporto con il corpo la composizione privilegia il volto. */
+.interventions article:nth-child(4) .intervention-illustration img {
+  object-position: center top;
+}
+
+/* Pagina “Come lavoriamo”: immagini più presenti e colonne di testo leggibili. */
+.working-approach {
+  column-gap: clamp(24px, 2.5vw, 40px);
+  grid-template-columns: minmax(200px, 260px) minmax(0, 1fr) minmax(0, 1fr) minmax(200px, 260px);
+  padding-left: max(25px, 6vw);
+  padding-right: max(25px, 6vw);
+}
+.working-side-art {
+  width: 100%;
+}
+.steps-header {
+  grid-template-columns: minmax(0, 1fr) minmax(310px, 400px);
+  max-width: 1200px;
+}
+.steps-illustration {
+  width: 100%;
+}
+@media (max-width: 800px) {
+  .working-approach {
+    column-gap: 18px;
+  }
+  .steps-header {
+    grid-template-columns: 1fr;
+  }
+  .steps-illustration {
+    max-width: 300px;
   }
 }
