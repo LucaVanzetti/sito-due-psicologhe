@@ -1,5 +1,17 @@
 # Repository Guidelines
 
+## Start of every session (read first)
+
+The project is worked on from several devices, and GitHub (`origin`, branch `main`) is the single source of truth. **Before doing anything else, check that the local copy is aligned:**
+
+```sh
+git fetch origin && git status -sb && git pull --ff-only origin main
+```
+
+- If the pull is not a clean fast-forward (diverged history, local uncommitted changes that conflict), stop and tell the user before touching any file.
+- Finish every task with a focused commit and `git push origin main`; never leave work only on one device.
+- `private/` is git-ignored, so it is **not** synchronised between devices (client checklist, briefing, original images and fonts live there). If a file in `private/` is needed and missing, ask the user instead of recreating it.
+
 ## Project Structure & Module Organization
 
 This is a lightweight static website for **Allieri & Pagliari — Psicologhe**. Keep the site dependency-free unless a new requirement clearly justifies a build tool.
@@ -7,13 +19,20 @@ This is a lightweight static website for **Allieri & Pagliari — Psicologhe**. 
 - `index.html` contains the page structure and Italian content.
 - `styles.css` contains the complete responsive visual system: CSS variables, layout, typography, illustrations, and media queries.
 - `script.js` contains small progressive-enhancement interactions: the accessible mobile navigation toggle and the fixed mobile WhatsApp bar ("Scrivi a Valentina" / "Scrivi a Silvia"), injected on every page and hidden from 768 px up.
-- Pages: `index.html`, `lo-studio.html`, `come-lavoriamo.html`, `aree-intervento.html`, `chi-siamo.html`, `valentina-allieri.html`, `silvia-pagliari.html`, `contatti.html`, `privacy.html`. Silvia's page carries its own local `<style>` block.
+- Pages: `index.html`, `lo-studio.html`, `come-lavoriamo.html`, `aree-intervento.html`, `chi-siamo.html`, `valentina-allieri.html`, `silvia-pagliari.html`, `contatti.html`, `faq.html`, `privacy.html`, plus `404.html` (served at any address, so it uses root-relative paths and stays `noindex` even after launch). Every page has a skip link ("Vai al contenuto") targeting `<main>`.
+- `tools/prepara-lancio.py <https://dominio>` is the one-shot launch script (stdlib only, re-runnable): removes `noindex`, adds canonical/Open Graph image/JSON-LD, writes `sitemap.xml` and `robots.txt`, optionally `CNAME`. It refuses to run while `privacy.html` still has placeholders. Do not hand-edit canonical/sitemap before the domain is confirmed.
+- `faq.html` contains only facts already published elsewhere on the site (plus the professional-secrecy statement, to be validated by the client). Do not add prices or other unconfirmed data to it.
 - The six topics listed on the homepage ("Ansia e stress", "Difficoltà relazionali", "Autostima", "Momenti di crisi", "Problemi di coppia", "Cambiamenti e transizioni") are deliberately **static topics without a dedicated page**, per the client. Do not turn them back into links or add description pages unless asked.
 - `privacy.html` is a draft privacy information page. It contains explicit placeholders and must not be treated as publish-ready until the indicated legal and operational data are confirmed.
 - La checklist delle conferme del cliente e i materiali di briefing sono conservati localmente in `private/` e non devono essere aggiunti al repository pubblico.
 - `README.md` documents the current project status, local preview, checks, and deployment prerequisites.
 
 Place future static assets in an `assets/` directory, grouped by purpose (for example, `assets/images/` and `assets/icons/`). Use relative paths.
+
+### Fonts and icons
+
+- Fonts are local **woff2** subsets (Outfit, Nunito Sans; latin only) in `assets/fonts/`, preloaded in every `<head>`. Originals are in `private/originals/fonts/`. Do not add font files that are not referenced in `styles.css`.
+- The logo is the "archi" mark (`assets/images/logo-archi-96.webp` / `-192.webp`, transparent background, 54×45 px in the header). Favicons are in `assets/icons/` and `favicon.ico`; `assets/images/og-allieri-pagliari.jpg` (1200×630) is the social preview and is referenced only by the launch script because Open Graph needs an absolute URL.
 
 ### Images
 

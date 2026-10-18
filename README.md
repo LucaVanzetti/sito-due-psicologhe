@@ -1,6 +1,6 @@
 # Allieri & Pagliari — Psicologhe
 
-Sito statico dello studio di Valentina Allieri e Silvia Pagliari. Il progetto non usa dipendenze né build tool. I font sono ospitati localmente in `assets/fonts/`, così le pagine non caricano Google Fonts dal browser del visitatore.
+Sito statico dello studio di Valentina Allieri e Silvia Pagliari. Il progetto non usa dipendenze né build tool. I font (woff2, solo alfabeto latino) sono ospitati localmente in `assets/fonts/`, così le pagine non caricano Google Fonts dal browser del visitatore.
 
 ## Pagine
 
@@ -11,6 +11,8 @@ Sito statico dello studio di Valentina Allieri e Silvia Pagliari. Il progetto no
 - `chi-siamo.html` — presentazione delle professioniste
 - `valentina-allieri.html` e `silvia-pagliari.html` — profili individuali
 - `contatti.html` — contatti (WhatsApp per entrambe) e informazioni pratiche
+- `faq.html` — domande frequenti (solo informazioni già presenti nel sito)
+- `404.html` — pagina non trovata (percorsi dalla radice, resta `noindex`)
 - `privacy.html` — **bozza non pronta alla pubblicazione**: contiene informazioni e placeholder da validare
 - `robots.txt` — istruzioni per i crawler della sola anteprima
 
@@ -83,6 +85,14 @@ Il sito è pronto per una **anteprima noindex**, ma non per la pubblicazione def
 - rimozione di `noindex` e aggiornamento di `robots.txt` al passaggio alla versione definitiva.
 
 La checklist e il questionario del cliente sono conservati solo nella cartella locale ignorata `private/`; non devono essere aggiunti al repository pubblico.
+
+## Lavorare da più dispositivi
+
+GitHub (`origin/main`) è la fonte unica. All'inizio di ogni sessione: `git fetch origin && git pull --ff-only origin main`; a fine lavoro: commit e `git push origin main`. La cartella `private/` non è sincronizzata (è ignorata da Git).
+
+## Lancio sul dominio definitivo
+
+Quando dominio e privacy sono pronti: `python3 tools/prepara-lancio.py https://www.dominio.it --cname` (aggiunge canonical, Open Graph, dati strutturati, `sitemap.xml`, `robots.txt` e rimuove `noindex`). Poi inviare la sitemap a Search Console e creare il Google Business Profile.
 
 ## SEO e ricerche AI
 
