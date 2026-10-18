@@ -311,3 +311,23 @@ footer p { margin: 0; }
   .home .hero-art::after { background: color-mix(in srgb, var(--ink) 66%, transparent); }
   .home .practical-pills { margin-top: 28px; }
 }
+
+/* Homepage: ritratto condiviso nello spazio “Chi siamo”. */
+.statement-art {
+  min-height: 300px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 150px 150px 24px 24px;
+  background: var(--soft);
+}
+.statement-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+@media (min-width: 768px) {
+  .statement { grid-template-columns: minmax(300px, .85fr) minmax(0, 1fr); align-items: center; }
+  .statement-art { min-height: 430px; }
+}
