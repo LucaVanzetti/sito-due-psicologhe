@@ -331,3 +331,26 @@ footer p { margin: 0; }
   .statement { grid-template-columns: minmax(300px, .85fr) minmax(0, 1fr); align-items: center; }
   .statement-art { min-height: 430px; }
 }
+
+/* Pagine segnaposto: nessun contenuto clinico viene anticipato senza validazione. */
+.placeholder-page { min-height: 52vh; }
+.placeholder-page .button { margin-top: 10px; }
+
+/* Foto dell'ingresso nello spazio informativo della pagina Contatti. */
+.contact-location-photo {
+  min-height: 310px;
+  margin: 24px 0 0;
+  overflow: hidden;
+  border-radius: 130px 130px 24px 24px;
+  background: var(--soft);
+}
+.contact-location-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+@media (min-width: 768px) {
+  .contact-location-photo { min-height: 390px; }
+}
