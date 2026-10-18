@@ -43,7 +43,7 @@ All visitor-facing copy is Italian and professional. The current copy mixes `Lei
 ## Current Site State
 
 - Review preview only: every page carries `noindex, nofollow, noarchive` and `robots.txt` blocks crawlers. Remove both before the public launch.
-- Contact policy: both psychologists are contacted by **WhatsApp** as the main channel (Valentina `393669539230`, Silvia `393466519968`; the latter is also her phone number and is shown as a secondary `tel:` link on the contact page). Valentina also has a MioDottore link. Confirm that Silvia's number is active on WhatsApp.
+- Contact policy: both psychologists are contacted by **WhatsApp** as the main channel (Valentina `393669539230`, Silvia `393466519968`; the latter is also her phone number and is shown as a secondary `tel:` link on the contact page). Valentina also has a MioDottore link. The client confirmed that Silvia's number is correct and active on WhatsApp.
 - Homepage hero: the tree illustration is full-bleed; the dark overlay is a gradient only behind the text (from the bottom on mobile, from the left on desktop), not over the whole image.
 - Mobile layout: profile cards on the homepage stack in one column; topic chips use a two-column grid; the fixed WhatsApp bar needs `padding-bottom` on `body` (already set below 768 px).
 - Focus ring is `--ink` (and `--soft` on dark areas) to keep a 3:1 contrast; `--accent` is currently unused.
