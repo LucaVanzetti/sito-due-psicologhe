@@ -354,3 +354,13 @@ footer p { margin: 0; }
 @media (min-width: 768px) {
   .contact-location-photo { min-height: 390px; }
 }
+
+/* Profili individuali: l'inquadratura verticale mostra il ritratto senza tagli ravvicinati. */
+.bio-hero .portrait-photo {
+  min-height: 0;
+  aspect-ratio: 3 / 4;
+}
+.bio-hero .portrait-photo img { object-position: center top; }
+@media (min-width: 768px) {
+  .bio-hero .portrait-photo { min-height: 0; }
+}
