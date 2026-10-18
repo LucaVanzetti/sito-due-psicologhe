@@ -364,3 +364,7 @@ footer p { margin: 0; }
 @media (min-width: 768px) {
   .bio-hero .portrait-photo { min-height: 0; }
 }
+
+/* L'illustrazione dell'approccio riempie la cornice, senza fondo sabbia residuo. */
+.approach-art { position: relative; }
+.approach-art img { position: absolute; inset: 0; }
