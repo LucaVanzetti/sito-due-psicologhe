@@ -1,6 +1,5 @@
 :root {
   --primary: #5A2E7A;
-  --accent: #D4790F;
   --soft: #EBC48C;
   --ground: #FBF4E8;
   --ink: #2E1A3D;
@@ -202,13 +201,13 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--ink); outline-o
 .emergency-notice p { margin: 0; }
 .profile-detail { display: grid; gap: 20px; padding-bottom: 48px; }
 .profile-detail { margin-bottom: 20px; padding-top: 34px; border-radius: 32px; }
-.profile-valentina { background: var(--accent); color: var(--ink); }
+.profile-valentina { background: var(--soft); color: var(--ink); }
 .profile-valentina .eyebrow { color: var(--ink); }
 .profile-valentina h2 em { color: var(--primary); }
 .profile-silvia { background: var(--primary); color: var(--surface); }
 .profile-silvia .eyebrow, .profile-silvia h2 em { color: var(--soft); }
-.profile-silvia .button { background: var(--accent); color: var(--ink); }
-.profile-silvia .button:hover { background: var(--soft); }
+.profile-silvia .button { background: var(--soft); color: var(--ink); }
+.profile-silvia .button:hover { background: var(--ground); }
 .profile-silvia a:focus-visible { outline-color: var(--soft); }
 .profile-detail .portrait-profile { min-height: 330px; }
 .bio-hero { display: grid; gap: 20px; }
