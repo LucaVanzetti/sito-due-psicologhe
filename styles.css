@@ -15,7 +15,7 @@
   font-style: normal;
   font-weight: 400 600;
   font-display: swap;
-  src: url('assets/fonts/outfit-variable.ttf') format('truetype');
+  src: url('assets/fonts/outfit-variable.woff2') format('woff2');
 }
 
 @font-face {
@@ -23,7 +23,7 @@
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
-  src: url('assets/fonts/nunito-sans-variable.ttf') format('truetype');
+  src: url('assets/fonts/nunito-sans-variable.woff2') format('woff2');
 }
 
 * { box-sizing: border-box; }
@@ -61,7 +61,7 @@ p { text-wrap: pretty; }
   padding: 12px var(--page-gutter);
 }
 .brand { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; }
-.brand-mark { width: 38px; height: 38px; object-fit: contain; }
+.brand-mark { width: 54px; height: 45px; object-fit: contain; }
 .brand-name { font: 500 16px/1 Outfit, sans-serif; letter-spacing: -.02em; }
 .brand-name i { font-style: normal; }
 .brand-name small { display: block; margin-top: 3px; font: 700 11px/1.1 'Nunito Sans', sans-serif; letter-spacing: .1em; text-transform: uppercase; }
@@ -397,3 +397,82 @@ footer p { margin: 0; }
 /* L'illustrazione dell'approccio riempie la cornice, senza fondo sabbia residuo. */
 .approach-art { position: relative; }
 .approach-art img { position: absolute; inset: 0; }
+
+/* Pagina di Silvia Pagliari. */
+.silvia-page .bio-hero {
+  padding-bottom: 34px;
+}
+.silvia-page .bio-hero h1 {
+  max-width: 10ch;
+}
+.silvia-page .bio-hero .professional-details {
+  max-width: 510px;
+  margin-bottom: 26px;
+}
+.silvia-page .silvia-section {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 44px var(--page-gutter);
+}
+.silvia-page .silvia-section-header {
+  max-width: 570px;
+  margin-bottom: 24px;
+}
+.silvia-page .silvia-section-header h2 {
+  margin-bottom: 0;
+}
+.silvia-page .silvia-copy {
+  max-width: 650px;
+}
+.silvia-page .silvia-copy p:last-child {
+  margin-bottom: 0;
+}
+.silvia-page .silvia-section--path {
+  background: var(--soft);
+  border-radius: 32px;
+}
+.silvia-page .silvia-section--together {
+  padding-bottom: 56px;
+}
+.silvia-page .silvia-focus {
+  margin-top: 30px;
+}
+.silvia-page .silvia-focus .eyebrow {
+  margin-bottom: 14px;
+}
+@media (min-width: 768px) {
+  .silvia-page .silvia-section {
+    display: grid;
+    grid-template-columns: minmax(240px, .75fr) minmax(0, 1.25fr);
+    gap: clamp(40px, 9vw, 120px);
+    align-items: start;
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+  .silvia-page .silvia-section-header {
+    margin-bottom: 0;
+  }
+  .silvia-page .silvia-section--together {
+    padding-bottom: 80px;
+  }
+  .silvia-page .silvia-focus {
+    margin-top: 32px;
+  }
+}
+
+/* Accessibilità: collegamento "Vai al contenuto". */
+.skip-link { position: absolute; z-index: 100; top: 8px; left: 8px; padding: 12px 18px; border-radius: 999px; background: var(--ink); color: var(--surface); font-weight: 700; text-decoration: none; transform: translateY(-200%); }
+.skip-link:focus-visible { transform: none; outline: 3px solid var(--soft); outline-offset: 2px; }
+
+/* Homepage: la riga introduttiva fa parte del titolo principale (H1) ma mantiene l'aspetto di una eyebrow. */
+h1 .eyebrow { display: block; margin-bottom: 12px; font-family: 'Nunito Sans', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .09em; line-height: 1.4; }
+
+/* Domande frequenti. */
+.faq { max-width: 760px; margin: 0 auto; padding: 8px var(--page-gutter) 24px; }
+.faq article { padding: 24px 0; border-bottom: 1px solid var(--line); }
+.faq article:first-child { border-top: 1px solid var(--line); }
+.faq h2 { margin-bottom: 10px; font-size: clamp(21px, 4.2vw, 27px); line-height: 1.2; }
+.faq p { max-width: 65ch; margin: 0; }
+.faq-cta { display: grid; justify-items: center; gap: 16px; max-width: var(--content-width); margin: 0 auto; padding: 40px var(--page-gutter) 64px; text-align: center; }
+.faq-cta p { margin: 0; font: 500 clamp(22px, 4vw, 28px)/1.2 Outfit, sans-serif; }
+.centered .hero-actions { justify-content: center; }
