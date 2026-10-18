@@ -9,8 +9,71 @@
       Silvia Pagliari | Psicologa
     </title>
     <link href="styles.css" rel="stylesheet"/>
+    <style>
+      /* Regole locali alla pagina di Silvia Pagliari. */
+      .silvia-page .bio-hero {
+        padding-bottom: 34px;
+      }
+      .silvia-page .bio-hero h1 {
+        max-width: 10ch;
+      }
+      .silvia-page .bio-hero .professional-details {
+        max-width: 510px;
+        margin-bottom: 26px;
+      }
+      .silvia-page .silvia-section {
+        max-width: var(--content-width);
+        margin: 0 auto;
+        padding: 44px var(--page-gutter);
+      }
+      .silvia-page .silvia-section-header {
+        max-width: 570px;
+        margin-bottom: 24px;
+      }
+      .silvia-page .silvia-section-header h2 {
+        margin-bottom: 0;
+      }
+      .silvia-page .silvia-copy {
+        max-width: 650px;
+      }
+      .silvia-page .silvia-copy p:last-child {
+        margin-bottom: 0;
+      }
+      .silvia-page .silvia-section--path {
+        background: var(--soft);
+        border-radius: 32px;
+      }
+      .silvia-page .silvia-section--together {
+        padding-bottom: 56px;
+      }
+      .silvia-page .silvia-focus {
+        margin-top: 30px;
+      }
+      .silvia-page .silvia-focus .eyebrow {
+        margin-bottom: 14px;
+      }
+      @media (min-width: 768px) {
+        .silvia-page .silvia-section {
+          display: grid;
+          grid-template-columns: minmax(240px, .75fr) minmax(0, 1.25fr);
+          gap: clamp(40px, 9vw, 120px);
+          align-items: start;
+          padding-top: 72px;
+          padding-bottom: 72px;
+        }
+        .silvia-page .silvia-section-header {
+          margin-bottom: 0;
+        }
+        .silvia-page .silvia-section--together {
+          padding-bottom: 80px;
+        }
+        .silvia-page .silvia-focus {
+          margin-top: 32px;
+        }
+      }
+    </style>
   </head>
-  <body id="top">
+  <body class="silvia-page" id="top">
     <header class="site-header">
       <a class="brand" href="index.html">
         <img alt="" class="brand-mark" src="assets/images/logo-base.png"/>
@@ -64,10 +127,10 @@
             Relazioni, identità
             <br/>
             <em>
-              e appartenenze.
+              e appartenenze
             </em>
           </h1>
-          <p>
+          <p class="professional-details">
             Psicologa clinica iscritta all’Ordine degli Psicologi della Lombardia, n. 29057.
           </p>
           <a class="button button-dark" href="tel:+393466519968">
@@ -78,62 +141,89 @@
           </a>
         </div>
       </section>
-      <section class="two-column content-block">
-        <div>
+
+      <section aria-labelledby="mondo-title" class="silvia-section">
+        <div class="silvia-section-header">
           <p class="eyebrow">
-            Il mio percorso
+            Il mio lavoro
           </p>
-          <h2>
-            Uno spazio
-            <br/>
-            <em>
-              non giudicante.
-            </em>
+          <h2 id="mondo-title">
+            Ogni persona porta con sé un mondo
           </h2>
         </div>
-        <div>
+        <div class="silvia-copy">
           <p>
-            Sono la dott.ssa Silvia Pagliari, psicologa clinica. Mi interessa comprendere come le persone intrecciano storia, relazioni, appartenenze, corpo e desideri per costruire un modo personale di stare nel mondo. Frequento la Scuola di specializzazione in psicoterapia sistemico-relazionale I.S.S.T.
+            Nel lavoro psicologico mi appassiona incontrare le storie delle persone e comprendere, con curiosità e rispetto, come ciascuno costruisce relazioni, significati e un modo personale di stare nel mondo.
           </p>
           <p>
-            Nel mio lavoro considero la persona insieme alle relazioni significative, alla storia familiare, ai contesti di vita e alle appartenenze culturali di cui fa parte. Mi occupo in particolare di difficoltà relazionali e di coppia, cambiamenti di vita, esperienze migratorie e interculturali, vissuti legati a trauma e violenza, identità e sessualità.
-          </p>
-          <p>
-            Lavoro con adolescenti e adulti, coppie e famiglie, cercando di costruire insieme una comprensione del problema che non riduca la persona al sintomo, ma aiuti a riconoscere risorse, significati e nuove possibilità. Ricevo a Roncello e online.
+            Credo che le difficoltà non definiscano chi siamo: possono essere esplorate senza giudizio, tenendo conto di ciò che abbiamo vissuto, dei legami importanti e delle risorse che spesso restano sullo sfondo.
           </p>
         </div>
       </section>
-      <section class="focus">
-        <p class="eyebrow">
-          Una particolare attenzione a
-        </p>
-        <div class="pill-list">
-          <span>
-            Adolescenza
-          </span>
-          <span>
-            Identità e appartenenza
-          </span>
-          <span>
-            Background migratorio
-          </span>
-          <span>
-            Transizioni e cambiamenti
-          </span>
-          <span>
-            Famiglie e coppie
-          </span>
-          <span>
-            Vulnerabilità
-          </span>
-          <span>
-            Trauma e violenza
-          </span>
-          <span>
-            Identità e sessualità
-          </span>
+
+      <section aria-labelledby="percorso-title" class="silvia-section silvia-section--path">
+        <div class="silvia-section-header">
+          <p class="eyebrow">
+            Formazione ed esperienza
+          </p>
+          <h2 id="percorso-title">
+            Il mio percorso e il mio sguardo
+          </h2>
+        </div>
+        <div class="silvia-copy">
+          <p>
+            Frequento la Scuola di specializzazione in psicoterapia sistemico-relazionale I.S.S.T. Ho maturato esperienza nel counseling psicologico transculturale, nel sostegno psicosociale e nei contesti di accoglienza, anche collaborando con équipe multidisciplinari.
+          </p>
+          <p>
+            Queste esperienze hanno rafforzato il mio modo di lavorare: guardare alla persona insieme alle sue relazioni, alla storia familiare e ai contesti sociali e culturali cui appartiene. Lo sguardo transculturale è per me un’attenzione concreta alle differenze e alle esperienze di ciascuno, non un percorso riservato a una sola storia o provenienza.
+          </p>
         </div>
       </section>
+
+      <section aria-labelledby="insieme-title" class="silvia-section silvia-section--together">
+        <div class="silvia-section-header">
+          <p class="eyebrow">
+            Il percorso psicologico
+          </p>
+          <h2 id="insieme-title">
+            Come possiamo lavorare insieme
+          </h2>
+        </div>
+        <div class="silvia-copy">
+          <p>
+            Accompagno adolescenti e adulti, coppie e famiglie nell’esplorare momenti di difficoltà, relazioni che faticano, cambiamenti di vita e risorse personali. Il percorso viene costruito insieme, con tempi e obiettivi condivisi.
+          </p>
+          <p>
+            Possiamo dare spazio a domande che riguardano identità, relazioni affettive e familiari, vita di coppia, esperienze interculturali, corpo e sessualità. Ricevo a Roncello e online.
+          </p>
+          <div class="silvia-focus">
+            <p class="eyebrow">
+              Possiamo occuparci di
+            </p>
+            <div class="pill-list">
+              <span>
+                Identità e appartenenze
+              </span>
+              <span>
+                Relazioni affettive e familiari
+              </span>
+              <span>
+                Coppia
+              </span>
+              <span>
+                Cambiamenti di vita
+              </span>
+              <span>
+                Esperienze interculturali
+              </span>
+              <span>
+                Corpo e sessualità
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="bio-contact">
         <h2>
           In presenza e
