@@ -253,3 +253,10 @@ footer p { margin: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
+
+/* Rifiniture desktop: le CTA e i blocchi informativi mantengono una misura accogliente. */
+@media (min-width: 768px) {
+  .contact-card { width: 100%; max-width: 420px; justify-self: end; }
+  .page-intro > p:last-child { max-width: 650px; }
+  .interventions article { min-height: 100%; }
+}
