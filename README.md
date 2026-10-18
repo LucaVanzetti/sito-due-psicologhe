@@ -10,9 +10,15 @@ Sito statico dello studio di Valentina Allieri e Silvia Pagliari. Il progetto no
 - `aree-intervento.html` — aree di intervento
 - `chi-siamo.html` — presentazione delle professioniste
 - `valentina-allieri.html` e `silvia-pagliari.html` — profili individuali
-- `contatti.html` — contatti e informazioni pratiche
+- `contatti.html` — contatti (WhatsApp per entrambe) e informazioni pratiche
 - `privacy.html` — **bozza non pronta alla pubblicazione**: contiene informazioni e placeholder da validare
 - `robots.txt` — istruzioni per i crawler della sola anteprima
+
+Le sei aree della homepage (Ansia e stress, Difficoltà relazionali, Autostima, Momenti di crisi, Problemi di coppia, Cambiamenti e transizioni) sono **solo elenco di temi**, senza pagina dedicata.
+
+## Immagini
+
+Il sito usa solo file WebP in più larghezze (`nome-480.webp`, `nome-800.webp`, …), richiamati con `srcset` e `sizes`. Gli originali PNG/JPEG si trovano in `private/originals/images/`, cartella locale ignorata da Git. Per sostituire un’immagine: partire dall’originale, ridimensionare ed esportare in WebP (qualità ~80), aggiornare `srcset`, `sizes`, `width` e `height` nelle pagine e controllare il risultato a 375 px e 1440 px.
 
 ## Avvio locale
 
