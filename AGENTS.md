@@ -39,6 +39,7 @@ Place future static assets in an `assets/` directory, grouped by purpose (for ex
 - The site serves **WebP only**, in several widths per image, named `<name>-<width>.webp` (for example `assets/images/portraits/silvia-pagliari-800.webp`). Original PNG/JPEG files are kept locally in `private/originals/images/` (git-ignored) and must not be re-added to `assets/`.
 - Every `<img>` needs `width`/`height` (intrinsic size of the largest variant), `srcset` + `sizes`, and `alt` (empty only for purely decorative art). Use `loading="lazy" decoding="async"` for everything below the first screen; the homepage hero uses `fetchpriority="high"`.
 - To add or replace an image: put the original in `private/originals/images/`, resize with Pillow (`Image.resize(..., LANCZOS)`, `save(..., 'WEBP', quality=80, method=6)`) to the widths needed (typically 480/800, plus 1200 for large hero-like art), then reference it as above. Illustrations are shown at roughly 2× their CSS size; check the result at 375 px and 1440 px.
+- `uomo-con-binocolo-*` (Aree di intervento, "Momenti di cambiamento") is a retouched version of the original "ragazza con binocolo" illustration (short hair, shirt and trousers); the edited full-size file is `private/originals/images/illustrations/uomo-con-binocolo-collage.png`. `teste-sovrapposte-*` is cropped to the artwork (no empty top margin) and is shown with its own aspect ratio on Come lavoriamo.
 - Illustrations that contain text (e.g. "Ogni storia merita uno sguardo attento") must keep a descriptive `alt`.
 
 ## Build, Test, and Development Commands

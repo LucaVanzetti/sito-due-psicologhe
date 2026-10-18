@@ -176,6 +176,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--ink); outline-o
 .steps, .services, .focus, .bio-contact { padding: 48px var(--page-gutter); }
 .steps { text-align: center; }
 .steps-header { display: grid; gap: 20px; text-align: left; }
+.steps-header p:not(.eyebrow) { max-width: 520px; }
 .steps-illustration, .journey-illustration { margin: 0; }
 .steps-illustration, .working-side-art, .journey-illustration, .intervention-illustration { overflow: hidden; border-radius: 100px 100px 24px 24px; background: var(--soft); }
 .steps-illustration img, .working-side-art img, .journey-illustration img, .intervention-illustration img { display: block; width: 100%; height: 100%; object-fit: cover; }
@@ -200,7 +201,15 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--ink); outline-o
 .emergency-notice { max-width: var(--content-width); margin: 0 auto 48px; padding: 20px var(--page-gutter); border-radius: 24px; background: var(--soft); }
 .emergency-notice p { margin: 0; }
 .profile-detail { display: grid; gap: 20px; padding-bottom: 48px; }
-.profile-detail.reverse { background: var(--soft); border-radius: 32px; }
+.profile-detail { margin-bottom: 20px; padding-top: 34px; border-radius: 32px; }
+.profile-valentina { background: var(--accent); color: var(--ink); }
+.profile-valentina .eyebrow { color: var(--ink); }
+.profile-valentina h2 em { color: var(--primary); }
+.profile-silvia { background: var(--primary); color: var(--surface); }
+.profile-silvia .eyebrow, .profile-silvia h2 em { color: var(--soft); }
+.profile-silvia .button { background: var(--accent); color: var(--ink); }
+.profile-silvia .button:hover { background: var(--soft); }
+.profile-silvia a:focus-visible { outline-color: var(--soft); }
 .profile-detail .portrait-profile { min-height: 330px; }
 .bio-hero { display: grid; gap: 20px; }
 .bio-hero .portrait-photo { min-height: 350px; }
@@ -263,6 +272,7 @@ footer p { margin: 0; }
   .working-approach > :nth-child(4) { grid-area: right; }
   .working-side-art { position: relative; width: 100%; min-height: 0; aspect-ratio: 3 / 4; align-self: center; justify-self: stretch; }
   .working-side-art img { position: absolute; inset: 0; }
+  .working-side-art-left { aspect-ratio: 941 / 870; }
   .journey-cta { grid-template-columns: minmax(0, 1fr) minmax(0, 400px); column-gap: 48px; }
   .journey-cta h2 { align-self: end; margin: 0; }
   .journey-cta .button { align-self: start; justify-self: start; }
