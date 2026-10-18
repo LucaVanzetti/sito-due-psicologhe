@@ -1,13 +1,14 @@
 :root {
-  --plum:#5b2d70;
-  --mauve:#921d66;
-  --olive:#86a50b;
-  --rose:#edc383;
-  --cream:#fff4df;
-  --ink:#35213e;
-  --line:rgba(53,33,62,.23);
-  --gold:#d98212;
-  --sand:#f0d6aa
+  --plum:#5f2167;
+  --mauve:#8c1c59;
+  --olive:#8ba21d;
+  --rose:#f3d4a4;
+  --cream:#f3d4a4;
+  --ink:#2f1c37;
+  --line:rgba(47,28,55,.26);
+  --gold:#d47c18;
+  --sand:#f3d4a4;
+  --blue:#34657d
 }
 * {
   box-sizing:border-box
@@ -262,7 +263,7 @@ h1 em,h2 em {
   border-color:var(--plum)
 }
 .approach-art {
-  background:#e7bd67;
+  background:var(--gold);
   position:relative;
   overflow:hidden
 }
@@ -854,7 +855,7 @@ footer>p {
   padding:42px
 }
 .contact-options article+article {
-  background:#a9c8d2
+  background:#b9d0d2
 }
 .contact-options h2 {
   font-size:50px
@@ -1082,7 +1083,7 @@ button:focus-visible {
 
 .emergency-notice {
   padding: 24px max(25px, 12vw);
-  background: #f6dda2;
+  background: #efd29b;
   color: var(--ink);
   text-align: center;
 }
@@ -1175,7 +1176,7 @@ h1,h2 {
 }
 .button-dark:hover,
 .button-dark:focus-visible {
-  background:#f0cd83;
+  background:#e6a04a;
 }
 .hero-photo {
   background-image:linear-gradient(rgba(95,57,37,.14),rgba(95,57,37,.54)),url('assets/images/studio/sala-colloqui-scrivania.jpeg');
@@ -1192,7 +1193,7 @@ h1,h2 {
   border-color:var(--plum);
 }
 .approach-art {
-  background:#e7bd67;
+  background:var(--gold);
   display:grid;
   place-items:center;
   padding:clamp(28px,5vw,75px);
@@ -1232,7 +1233,7 @@ h1,h2 {
 }
 .button-light:hover,
 .button-light:focus-visible {
-  background:#f0cd83;
+  background:#e6a04a;
 }
 .contact-card small {
   opacity:1;
@@ -1241,7 +1242,7 @@ h1,h2 {
   background:var(--gold);
 }
 footer {
-  background:#f7dfb6;
+  background:var(--sand);
 }
 @media(max-width:800px) {
   .approach-art {
@@ -1469,5 +1470,232 @@ footer {
   }
   .steps-illustration {
     max-width: 300px;
+  }
+}
+
+/* Palette tratta dai riferimenti: fichi e PANTONE 8842 C, 2623 C, 7699 XGC, 377 XGC. */
+.contact-info {
+  background: var(--blue);
+  color: var(--cream);
+}
+.contact-info .eyebrow,
+.contact-info h2 em {
+  color: var(--cream);
+}
+.contact-info .text-link,
+.contact-info .contact-map-link {
+  border-color: currentColor;
+}
+.cta-band {
+  background: var(--plum);
+  color: var(--cream);
+}
+.cta-band h2 em {
+  color: var(--rose);
+}
+
+/* Sfondo unico caldo: elimina l'accostamento panna/bianco tra sezioni adiacenti. */
+body,
+.hero-illustration,
+.people,
+.focus,
+.profile-detail,
+.profile-detail.reverse,
+.contact,
+.olive-block,
+.page-intro,
+.services,
+.steps,
+.areas {
+  background: var(--sand);
+}
+
+/* Proposta homepage: hero immersiva, più contrasto e immagini protagoniste. */
+.home {
+  background: var(--sand);
+}
+.home .site-header {
+  background: transparent;
+  border-bottom-color: rgba(243, 212, 164, .45);
+  color: var(--cream);
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.home .brand-name small {
+  color: inherit;
+}
+.home nav > a:hover,
+.home nav > a[aria-current="page"] {
+  color: var(--rose);
+}
+.home .hero {
+  border-radius: 0 0 42px 42px;
+  display: block;
+  margin: 0 16px;
+  min-height: min(850px, calc(100vh - 16px));
+  position: relative;
+}
+.home .hero-art {
+  border-radius: 0 0 42px 42px;
+  inset: 0;
+  min-height: 0;
+  position: absolute;
+}
+.home .hero-illustration::after {
+  background: linear-gradient(90deg, rgba(47, 28, 55, .88) 0%, rgba(47, 28, 55, .58) 47%, rgba(47, 28, 55, .13) 100%);
+}
+.home .hero-art img {
+  filter: saturate(1.18) contrast(1.03);
+}
+.home .hero-art p {
+  display: none;
+}
+.home .hero-copy {
+  color: var(--cream);
+  max-width: 760px;
+  padding: clamp(190px, 18vw, 290px) clamp(36px, 8vw, 128px) 100px;
+  position: relative;
+  z-index: 1;
+}
+.home .eyebrow,
+.home h1 em,
+.home .text-link {
+  color: inherit;
+}
+.home .hero-copy .eyebrow {
+  color: var(--rose);
+}
+.home .hero-copy h1 {
+  font-size: clamp(58px, 7.4vw, 114px);
+  letter-spacing: -.06em;
+}
+.home .hero-copy h1 em {
+  color: var(--rose);
+}
+.home .hero-copy .intro {
+  font-size: 19px;
+  max-width: 535px;
+}
+.home .hero-copy .text-link {
+  border-color: currentColor;
+}
+.home .statement {
+  padding-bottom: 150px;
+  padding-top: 150px;
+}
+.home .approach {
+  background: var(--blue);
+  color: var(--cream);
+}
+.home .approach .eyebrow,
+.home .approach h2 em,
+.home .approach-copy .text-link {
+  color: var(--rose);
+}
+.home .approach-copy .text-link {
+  border-color: var(--rose);
+}
+.home .approach-art {
+  background: var(--gold);
+}
+.home .areas {
+  background: var(--olive);
+}
+.home .areas .eyebrow,
+.home .areas h2 em {
+  color: var(--plum);
+}
+.home .people {
+  background: var(--rose);
+}
+.home .contact {
+  background: var(--plum);
+  color: var(--cream);
+}
+.home .contact .eyebrow,
+.home .contact h2 em {
+  color: var(--rose);
+}
+.home .contact-card {
+  background: rgba(243, 212, 164, .12);
+  border-color: rgba(243, 212, 164, .65);
+}
+@media (max-width: 800px) {
+  .home .site-header {
+    padding: 0 30px;
+  }
+  .home .menu-toggle span {
+    border-color: var(--cream);
+  }
+  .home nav {
+    background: var(--plum);
+    border: 0;
+    color: var(--cream);
+    top: 75px;
+  }
+  .home .hero {
+    margin: 0;
+    min-height: 780px;
+  }
+  .home .hero-art {
+    border-radius: 0 0 30px 30px;
+  }
+  .home .hero-illustration::after {
+    background: linear-gradient(180deg, rgba(47, 28, 55, .9) 0%, rgba(47, 28, 55, .56) 68%, rgba(47, 28, 55, .18) 100%);
+  }
+  .home .hero-copy {
+    padding: 150px 30px 78px;
+  }
+  .home .hero-copy h1 {
+    font-size: clamp(55px, 16vw, 78px);
+  }
+  .home .hero-copy .intro {
+    font-size: 17px;
+  }
+}
+
+/* Variante più armoniosa: tinte della stessa luminosità, senza stacchi netti. */
+.home .hero-illustration::after {
+  background: linear-gradient(90deg, rgba(72, 45, 79, .76) 0%, rgba(72, 45, 79, .43) 50%, rgba(72, 45, 79, .10) 100%);
+}
+.home .approach {
+  background: #c9d8d7;
+  color: var(--ink);
+}
+.home .approach .eyebrow,
+.home .approach h2 em,
+.home .approach-copy .text-link {
+  color: var(--mauve);
+}
+.home .approach-copy .text-link {
+  border-color: var(--mauve);
+}
+.home .approach-art {
+  background: #e5c887;
+}
+.home .areas {
+  background: #dce2b7;
+  color: var(--ink);
+}
+.home .people {
+  background: #efcaa6;
+}
+.home .contact {
+  background: #d4aebd;
+  color: var(--ink);
+}
+.home .contact .eyebrow,
+.home .contact h2 em {
+  color: var(--mauve);
+}
+.home .contact-card {
+  background: rgba(243, 212, 164, .4);
+  border-color: rgba(47, 28, 55, .28);
+}
+@media (max-width: 800px) {
+  .home .hero-illustration::after {
+    background: linear-gradient(180deg, rgba(72, 45, 79, .78) 0%, rgba(72, 45, 79, .47) 68%, rgba(72, 45, 79, .15) 100%);
   }
 }
