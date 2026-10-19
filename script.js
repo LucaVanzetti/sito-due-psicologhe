@@ -26,10 +26,12 @@ if (toggle && nav) {
   });
 }
 
-const mobileContactBar = document.createElement('aside');
-mobileContactBar.className = 'mobile-contact-bar';
-mobileContactBar.setAttribute('aria-label', 'Scrivici su WhatsApp');
-mobileContactBar.innerHTML = `
+if (!document.body.classList.contains('contact-page')) {
+  const mobileContactBar = document.createElement('aside');
+  mobileContactBar.className = 'mobile-contact-bar';
+  mobileContactBar.setAttribute('aria-label', 'Scrivici su WhatsApp');
+  mobileContactBar.setAttribute('aria-hidden', 'true');
+  mobileContactBar.innerHTML = `
   <a class="mobile-valentina" href="https://wa.me/393669539230" rel="noopener" aria-label="Scrivi a Valentina su WhatsApp">
     <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.2 9.2 0 0 1-3.9-.9L3 21l1.7-4.6A8 8 0 0 1 3 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 9 8.4z"/><path d="M8 10.2c.3 1.8 2.1 3.6 3.9 3.9M9.3 8.6l-.6 1.1M14.7 14.5l1.1-.6"/></svg>
     <span><small>Scrivi a</small>Valentina</span>
@@ -38,4 +40,17 @@ mobileContactBar.innerHTML = `
     <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.2 9.2 0 0 1-3.9-.9L3 21l1.7-4.6A8 8 0 0 1 3 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 9 8.4z"/><path d="M8 10.2c.3 1.8 2.1 3.6 3.9 3.9M9.3 8.6l-.6 1.1M14.7 14.5l1.1-.6"/></svg>
     <span><small>Scrivi a</small>Silvia</span>
   </a>`;
-document.body.append(mobileContactBar);
+  document.body.append(mobileContactBar);
+
+  const revealPoint = document.querySelector('.hero')?.offsetHeight ?? 300;
+  const updateMobileContactBar = () => {
+    const isVisible = window.scrollY > revealPoint;
+    mobileContactBar.classList.toggle('is-visible', isVisible);
+    mobileContactBar.setAttribute('aria-hidden', String(!isVisible));
+    mobileContactBar.inert = !isVisible;
+  };
+
+  window.addEventListener('scroll', updateMobileContactBar, { passive: true });
+  window.addEventListener('resize', updateMobileContactBar);
+  updateMobileContactBar();
+}
