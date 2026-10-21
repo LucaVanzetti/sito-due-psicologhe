@@ -21,7 +21,7 @@ This is a lightweight static website for **Allieri & Pagliari — Psicologhe**. 
 - `script.js` contains small progressive-enhancement interactions: the accessible mobile navigation toggle and the fixed mobile WhatsApp bar ("Scrivi a Valentina" / "Scrivi a Silvia"), injected on every page and hidden from 768 px up.
 - Pages: `index.html`, `lo-studio.html`, `come-lavoriamo.html`, `aree-intervento.html`, `chi-siamo.html`, `valentina-allieri.html`, `silvia-pagliari.html`, `contatti.html`, `faq.html`, `privacy.html`, plus `404.html` (served at any address, so it uses root-relative paths and stays `noindex` even after launch). Every page has a skip link ("Vai al contenuto") targeting `<main>`.
 - `tools/prepara-lancio.py <https://dominio>` is the one-shot launch script (stdlib only, re-runnable): removes `noindex`, adds canonical/Open Graph image/JSON-LD, writes `sitemap.xml` and `robots.txt`, optionally `CNAME`. It refuses to run while `privacy.html` still has placeholders. Do not hand-edit canonical/sitemap before the domain is confirmed.
-- `faq.html` contains only facts already published elsewhere on the site (plus the professional-secrecy statement, to be validated by the client). Do not add prices or other unconfirmed data to it.
+- `faq.html` contains only facts already published elsewhere on the site (plus the professional-secrecy statement, to be validated by the client). Tariffe confermate: colloquio individuale 60 €, di coppia 70 €, familiare 80 €. Do not add other unconfirmed data to it.
 - The six topics listed on the homepage ("Ansia e stress", "Difficoltà relazionali", "Autostima", "Momenti di crisi", "Problemi di coppia", "Cambiamenti e transizioni") are deliberately **static topics without a dedicated page**, per the client. Do not turn them back into links or add description pages unless asked.
 - `privacy.html` is a draft privacy information page. It contains explicit placeholders and must not be treated as publish-ready until the indicated legal and operational data are confirmed.
 - La checklist delle conferme del cliente e i materiali di briefing sono conservati localmente in `private/` e non devono essere aggiunti al repository pubblico.
@@ -64,6 +64,7 @@ All visitor-facing copy is Italian and professional. The current copy mixes `Lei
 
 - Review preview only: every page carries `noindex, nofollow, noarchive` and `robots.txt` blocks crawlers. Remove both before the public launch.
 - Contact policy: both psychologists are contacted by **WhatsApp** as the main channel (Valentina `393669539230`, Silvia `393466519968`; the latter is also her phone number and is shown as a secondary `tel:` link on the contact page). Valentina also has a MioDottore link. The client confirmed that Silvia's number is correct and active on WhatsApp.
+- Tariffe confermate: colloquio individuale 60 €, di coppia 70 €, familiare 80 €.
 - Homepage hero: the tree illustration is full-bleed; the dark overlay is a gradient only behind the text (from the bottom on mobile, from the left on desktop), not over the whole image.
 - Mobile layout: profile cards on the homepage stack in one column; topic chips use a two-column grid; the fixed WhatsApp bar needs `padding-bottom` on `body` (already set below 768 px).
 - Focus ring is `--ink` (and `--soft` on dark areas) to keep a 3:1 contrast; `--accent` is currently unused.
