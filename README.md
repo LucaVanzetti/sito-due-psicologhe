@@ -13,7 +13,7 @@ Sito statico dello studio di Valentina Allieri e Silvia Pagliari. Il progetto no
 - `contatti.html` — contatti (WhatsApp per entrambe) e informazioni pratiche
 - `faq.html` — domande frequenti (solo informazioni già presenti nel sito)
 - `404.html` — pagina non trovata (percorsi dalla radice, resta `noindex`)
-- `privacy.html` — **bozza non pronta alla pubblicazione**: contiene informazioni e placeholder da validare
+- `privacy.html` — informativa per sito e primo contatto condiviso; prima del lancio le professioniste devono sottoscrivere e applicare l’accordo operativo sulla casella comune
 - `robots.txt` — istruzioni per i crawler della sola anteprima
 
 Le sei aree della homepage (Ansia e stress, Difficoltà relazionali, Autostima, Momenti di crisi, Problemi di coppia, Cambiamenti e transizioni) sono **solo elenco di temi**, senza pagina dedicata.
@@ -63,7 +63,7 @@ Il contatto condiviso è la casella `contatti@allieriepagliari.it`, raggiungibil
 
 Anche la posizione dello studio sarà inizialmente un semplice link a Google Maps, non una mappa incorporata. In questo modo il sito non carica Google Maps automaticamente.
 
-La gestione del contatto condiviso, i fornitori tecnici e i tempi di conservazione devono essere riportati e validati nell’informativa privacy prima della pubblicazione definitiva.
+L’informativa descrive il contatto condiviso, i fornitori tecnici e il termine di conservazione. Prima della pubblicazione definitiva, le professioniste devono sottoscrivere e applicare l’accordo operativo conservato in `private/`, configurare gli accessi alla casella e verificare le condizioni del piano OVH.
 
 ## Controlli disponibili
 
@@ -77,8 +77,8 @@ Non è presente una suite automatica. Prima di ogni pubblicazione eseguire i con
 
 Il sito è pronto per una **anteprima noindex**, ma non per la pubblicazione definitiva finché non saranno completati i punti della checklist locale del progetto, in particolare:
 
-- accordo operativo per il contatto condiviso e validazione delle informazioni privacy;
-- recapito privacy, hosting, conservazione e validazione dell’informativa;
+- sottoscrizione e applicazione dell’accordo operativo per il contatto condiviso;
+- verifica accessi, 2FA, inoltri e cancellazione periodica della casella OVH;
 - fotografie autorizzate e immagini con licenza d’uso adeguata;
 - dominio pubblico definitivo e configurazione DNS;
 - Google Business Profile e configurazione SEO tecnica;
