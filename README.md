@@ -59,11 +59,11 @@ Per aggiornare l’anteprima, modificare i file, eseguire i controlli sotto indi
 
 ## Contatto condiviso e servizi esterni
 
-Il contatto condiviso previsto è un **Google Form** con notifiche a entrambe le professioniste. L’URL del modulo non è ancora disponibile, quindi non è stato inserito nel sito. Il modulo sarà aperto tramite link, non incorporato nella pagina.
+Il contatto condiviso è la casella `contatti@allieriepagliari.it`, raggiungibile dalla pagina Contatti. È letta da entrambe le professioniste soltanto per il primo orientamento; dopo l'eventuale assegnazione, ciascuna gestisce autonomamente il proprio contatto. Il sito invita a non inviare dettagli clinici o sanitari via email.
 
 Anche la posizione dello studio sarà inizialmente un semplice link a Google Maps, non una mappa incorporata. In questo modo il sito non carica Google Maps automaticamente.
 
-L’uso di Google Form e la relativa gestione dei dati devono essere riportati e validati nell’informativa privacy prima della pubblicazione definitiva.
+La gestione del contatto condiviso, i fornitori tecnici e i tempi di conservazione devono essere riportati e validati nell’informativa privacy prima della pubblicazione definitiva.
 
 ## Controlli disponibili
 
@@ -77,7 +77,7 @@ Non è presente una suite automatica. Prima di ogni pubblicazione eseguire i con
 
 Il sito è pronto per una **anteprima noindex**, ma non per la pubblicazione definitiva finché non saranno completati i punti della checklist locale del progetto, in particolare:
 
-- URL e configurazione del Google Form, comprese le informazioni privacy;
+- accordo operativo per il contatto condiviso e validazione delle informazioni privacy;
 - recapito privacy, hosting, conservazione e validazione dell’informativa;
 - fotografie autorizzate e immagini con licenza d’uso adeguata;
 - dominio pubblico definitivo e configurazione DNS;
