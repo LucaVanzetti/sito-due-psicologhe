@@ -117,7 +117,7 @@ nav a[aria-current='page'], nav a:hover { background: var(--soft); color: var(--
 .button:hover { background: var(--ink); }
 .button-light { background: var(--surface); color: var(--primary); }
 .button-light:hover { background: var(--ground); }
-.text-link { display: inline-flex; min-height: 44px; align-items: center; gap: 7px; color: var(--primary); font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.text-link { display: inline-flex; min-height: 44px; align-items: center; gap: 7px; color: var(--primary); font-weight: 700; text-decoration: none; }
 .text-link:hover { color: var(--ink); }
 a:focus-visible, button:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 .home .hero a:focus-visible, .contact-info a:focus-visible { outline-color: var(--soft); }
@@ -140,9 +140,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--ink); outline-o
 .approach-art { min-height: 260px; overflow: hidden; border-radius: 150px 150px 24px 24px; background: var(--soft); }
 .approach-art img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .areas { text-align: center; }
-.area-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 0 0 26px; padding: 0; list-style: none; }
-.area-list li { display: flex; min-height: 44px; align-items: center; justify-content: center; gap: 8px; padding: 8px 6px; color: var(--ink); font-size: 16px; font-weight: 600; line-height: 1.25; text-align: center; }
-.area-list li::before { width: 8px; height: 8px; flex: 0 0 8px; border-radius: 50%; background: var(--primary); content: ''; }
+.area-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0 0 26px; padding: 0; list-style: none; }
+.area-list li { display: flex; min-height: 92px; align-items: center; justify-content: center; padding: 16px 12px; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); color: var(--ink); font-size: 16px; font-weight: 700; line-height: 1.25; text-align: center; }
 .pill-list a, .pill-list span { display: inline-flex; min-height: 44px; align-items: center; padding: 9px 15px; border: 1.5px solid var(--primary); border-radius: 22px; color: var(--primary); font-size: 16px; font-weight: 700; text-decoration: none; }
 .pill-list a:hover { background: var(--primary); color: var(--surface); }
 .people { background: var(--ground); border-radius: 32px; }
@@ -152,11 +151,16 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--ink); outline-o
 .profile.valentina { background: var(--soft); }
 .profile.silvia { background: var(--primary-soft); }
 .portrait { overflow: hidden; margin-bottom: 16px; background: var(--surface); }
-.people .portrait { grid-row: 1 / span 3; width: 104px; aspect-ratio: 1; margin: 0; border-radius: 50%; }
+.people .portrait { grid-row: 1 / span 3; width: 96px; aspect-ratio: 3 / 4; margin: 0; border-radius: 18px; }
 .portrait picture, .portrait img { display: block; width: 100%; height: 100%; }
 .portrait img { object-fit: cover; object-position: center top; }
 .profile p { margin-bottom: 8px; font-size: 16px; }
 .contact { display: grid; gap: 24px; }
+.home .contact { display: block; }
+.home .contact > div { max-width: 620px; }
+.home .contact .button { margin-top: 4px; }
+.home .contact-location { margin-top: 26px; margin-bottom: 2px; font-weight: 700; }
+.home .contact-address { display: block; }
 .contact-card, .contact-options article { padding: 24px; border-radius: 24px; background: var(--surface); }
 .contact-card .button { width: 100%; margin-top: 10px; }
 .area-cta { width: 100%; max-width: 360px; }
@@ -262,12 +266,12 @@ footer p { margin: 0; }
   .approach { grid-template-columns: .9fr 1.1fr; align-items: center; padding-top: 58px; padding-bottom: 58px; }
   .approach-art { min-height: 420px; }
   .areas, .people { padding-top: 78px; padding-bottom: 78px; }
-  .area-list { display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 30px; }
-  .area-list li { min-height: 40px; padding: 7px 10px; }
+  .area-list { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 780px; margin: 0 auto 30px; }
+  .area-list li { min-height: 108px; }
   .area-cta { width: auto; max-width: none; }
   .profile-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 60px; max-width: 700px; margin: 0 auto; }
   .profile { display: block; text-align: center; }
-  .people .portrait { width: min(100%, 250px); margin: 0 auto 16px; }
+  .people .portrait { width: min(100%, 250px); aspect-ratio: 3 / 4; margin: 0 auto 16px; border-radius: 24px; }
   .contact { grid-template-columns: 1.1fr .9fr; align-items: center; padding-top: 78px; padding-bottom: 78px; }
   .shared-contact { grid-template-columns: 1fr auto; align-items: end; padding: 32px; }
   .page-intro { padding-top: 82px; padding-bottom: 56px; }
