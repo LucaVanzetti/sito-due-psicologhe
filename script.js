@@ -36,7 +36,7 @@ if (!document.body.classList.contains('contact-page')) {
     <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.2 9.2 0 0 1-3.9-.9L3 21l1.7-4.6A8 8 0 0 1 3 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 9 8.4z"/><path d="M8 10.2c.3 1.8 2.1 3.6 3.9 3.9M9.3 8.6l-.6 1.1M14.7 14.5l1.1-.6"/></svg>
     <span><small>Scrivi a</small>Valentina</span>
   </a>
-  <a class="mobile-silvia" href="https://wa.me/393466519968" rel="noopener" aria-label="Scrivi a Silvia su WhatsApp">
+  <a class="mobile-silvia" href="https://wa.me/393534259158" rel="noopener" aria-label="Scrivi a Silvia su WhatsApp">
     <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.2 9.2 0 0 1-3.9-.9L3 21l1.7-4.6A8 8 0 0 1 3 11.5a8.4 8.4 0 0 1 9-8.4 8.4 8.4 0 0 1 9 8.4z"/><path d="M8 10.2c.3 1.8 2.1 3.6 3.9 3.9M9.3 8.6l-.6 1.1M14.7 14.5l1.1-.6"/></svg>
     <span><small>Scrivi a</small>Silvia</span>
   </a>`;
