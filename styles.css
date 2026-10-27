@@ -426,50 +426,50 @@ footer p { margin: 0; }
 .approach-art { position: relative; }
 .approach-art img { position: absolute; inset: 0; }
 
-/* Pagina di Silvia Pagliari. */
-.silvia-page .bio-hero {
+/* Pagine dei profili professionali. */
+.profile-page .bio-hero {
   padding-bottom: 34px;
 }
-.silvia-page .bio-hero h1 {
+.profile-page .bio-hero h1 {
   max-width: 10ch;
 }
-.silvia-page .bio-hero .professional-details {
+.profile-page .bio-hero .professional-details {
   max-width: 510px;
   margin-bottom: 26px;
 }
-.silvia-page .silvia-section {
+.profile-page .profile-section {
   max-width: var(--content-width);
   margin: 0 auto;
   padding: 44px var(--page-gutter);
 }
-.silvia-page .silvia-section-header {
+.profile-page .profile-section-header {
   max-width: 570px;
   margin-bottom: 24px;
 }
-.silvia-page .silvia-section-header h2 {
+.profile-page .profile-section-header h2 {
   margin-bottom: 0;
 }
-.silvia-page .silvia-copy {
+.profile-page .profile-copy {
   max-width: 650px;
 }
-.silvia-page .silvia-copy p:last-child {
+.profile-page .profile-copy p:last-child {
   margin-bottom: 0;
 }
-.silvia-page .silvia-section--path {
+.profile-page .profile-section--path {
   background: var(--soft);
   border-radius: 32px;
 }
-.silvia-page .silvia-section--together {
+.profile-page .profile-section--together {
   padding-bottom: 56px;
 }
-.silvia-page .silvia-focus {
+.profile-page .profile-focus {
   margin-top: 30px;
 }
-.silvia-page .silvia-focus .eyebrow {
+.profile-page .profile-focus .eyebrow {
   margin-bottom: 14px;
 }
 @media (min-width: 768px) {
-  .silvia-page .silvia-section {
+  .profile-page .profile-section {
     display: grid;
     grid-template-columns: minmax(240px, .75fr) minmax(0, 1.25fr);
     gap: clamp(40px, 9vw, 120px);
@@ -477,13 +477,13 @@ footer p { margin: 0; }
     padding-top: 72px;
     padding-bottom: 72px;
   }
-  .silvia-page .silvia-section-header {
+  .profile-page .profile-section-header {
     margin-bottom: 0;
   }
-  .silvia-page .silvia-section--together {
+  .profile-page .profile-section--together {
     padding-bottom: 80px;
   }
-  .silvia-page .silvia-focus {
+  .profile-page .profile-focus {
     margin-top: 32px;
   }
 }
