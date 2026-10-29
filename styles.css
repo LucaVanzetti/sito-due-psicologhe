@@ -27,11 +27,11 @@
 }
 
 @font-face {
-  font-family: Eczar;
+  font-family: Merriweather;
   font-style: normal;
-  font-weight: 400 600;
+  font-weight: 300 900;
   font-display: swap;
-  src: url('assets/fonts/eczar-variable.woff2') format('woff2');
+  src: url('assets/fonts/merriweather-variable.woff2') format('woff2');
 }
 
 * { box-sizing: border-box; }
@@ -49,10 +49,11 @@ body {
 img { max-width: 100%; height: auto; }
 a { color: inherit; }
 h1, h2, h3, p { margin-top: 0; }
-h1, h2, h3 { font-family: Eczar, serif; font-weight: 500; letter-spacing: -.025em; }
-h1 { margin-bottom: 20px; font-size: clamp(36px, 8vw, 66px); line-height: 1.15; }
+h1, h2 { font-family: Merriweather, Georgia, serif; font-weight: 400; letter-spacing: -.025em; }
+h3 { font-family: Outfit, sans-serif; font-weight: 500; letter-spacing: -.035em; }
+h1 { margin-bottom: 20px; font-size: clamp(36px, 8vw, 66px); line-height: 1.16; }
 h2 { margin-bottom: 18px; font-size: clamp(28px, 4vw, 46px); line-height: 1.2; }
-h3 { margin-bottom: 8px; font-size: 22px; line-height: 1.25; }
+h3 { margin-bottom: 8px; font-size: 22px; line-height: 1.2; }
 h1 em, h2 em { color: var(--primary); font-style: normal; }
 h1, h2, h3 { text-wrap: balance; }
 p { text-wrap: pretty; }
