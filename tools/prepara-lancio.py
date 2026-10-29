@@ -71,7 +71,7 @@ def structured_data(page, base):
         'silvia-pagliari.html': {
             '@type': 'Person', 'name': 'Silvia Pagliari', 'jobTitle': 'Psicologa clinica',
             'url': f'{base}/silvia-pagliari.html', 'worksFor': {'@id': f'{base}/#studio'},
-            'telephone': '+39 346 651 9968',
+            'telephone': '+39 353 425 9158',
         },
     }
     if page == 'index.html':
