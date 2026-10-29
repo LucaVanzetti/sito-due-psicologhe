@@ -22,7 +22,9 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 START, END = '<!-- seo:start -->', '<!-- seo:end -->'
-SKIP_PAGES = {'404.html'}
+# Le pagine di servizio restano noindex e non devono comparire nella sitemap.
+# chi-siamo.html è un redirect HTML permanente verso lo-studio.html.
+SKIP_PAGES = {'404.html', 'chi-siamo.html'}
 OG_IMAGE = 'assets/images/og-allieri-pagliari.jpg'
 
 ADDRESS = {
