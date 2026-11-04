@@ -3,6 +3,7 @@
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
+import html
 import json
 import subprocess
 import sys
@@ -80,12 +81,29 @@ for name, page in pages.items():
     if u.path in ('index.html', '/index.html'):
       errors.append(f'{name}: link homepage da uniformare {link}')
 
+def visible_text(fragment):
+  return ' '.join(html.unescape(re.sub(r'<[^>]+>', '', fragment)).split())
+
+
 for name in pages:
-  for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', (ROOT / name).read_text(), re.S):
+  text = (ROOT / name).read_text()
+  for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', text, re.S):
     try:
-      json.loads(block)
+      data = json.loads(block)
     except ValueError:
       errors.append(f'{name}: dati strutturati JSON-LD non validi')
+      continue
+    if data.get('@type') == 'FAQPage':
+      section = re.search(r'<section class="faq"[^>]*>(.*?)</section>', text, re.S)
+      shown = [(visible_text(q), visible_text(a)) for q, a in re.findall(
+        r'<article>\s*<h2>(.*?)</h2>\s*<p>(.*?)</p>\s*</article>', section.group(1) if section else '', re.S)]
+      described = [(q['name'], q['acceptedAnswer']['text']) for q in data.get('mainEntity', [])]
+      if not shown or shown != described:
+        errors.append(f'{name}: dati FAQ diversi dalle domande visibili, rigenerarli')
+
+keys = [p for p in ROOT.glob('*.txt') if p.stem == p.read_text().strip()]
+if len(keys) != 1:
+  errors.append('Serve un solo file chiave IndexNow (<chiave>.txt) nella radice')
 
 
 def last_commit(name):

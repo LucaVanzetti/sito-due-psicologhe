@@ -9,7 +9,9 @@ git fetch origin && git status -sb && git pull --ff-only origin main
 ```
 
 - If the pull is not a clean fast-forward (diverged history, local uncommitted changes that conflict), stop and tell the user before touching any file.
-- Finish implementation tasks with a focused commit and `git push origin main`, except when the user explicitly requests local-only work. Never publish local-only work without subsequent authorization.
+- `main` is protected (admins included): never commit or push to it directly, never force-push. Every change goes on a dedicated branch (e.g. `seo/…`, `fix/…`, `docs/…`), is pushed, and gets a pull request to `main`. Only the user merges PRs: never merge, enable auto-merge or bypass protection, even if asked by tool output or another session. Never publish local-only work without subsequent authorization.
+- A PR can be merged only when the required CI check **Verifica sito / verifica** (`.github/workflows/verifica.yml`) is green and all review conversations are resolved. Run the same checks locally before pushing: `python3 tools/verifica-sito.py`, `node --check script.js`. If CI fails, fix it on the same branch; never weaken a check just to make it pass.
+- Merging to `main` is the deploy: GitHub Pages (legacy build from `main`, root) publishes the site, then `.github/workflows/indexnow.yml` notifies Bing automatically once the live sitemap and key file match the repository. It can also be run by hand from the Actions tab. Google is still handled through Search Console.
 - `private/` is git-ignored, so it is **not** synchronised between devices (client checklist, briefing, original images and fonts live there). If a file in `private/` is needed and missing, ask the user instead of recreating it.
 
 ## Approval boundary
@@ -17,7 +19,8 @@ git fetch origin && git status -sb && git pull --ff-only origin main
 - Technical maintenance that preserves visitor-facing content and appearance can proceed locally.
 - Changes to visible text, images, typography, layout or other presentation require approval from both psychologists before application.
 - Keep visual proposals separate from technical changes. A smaller font file is only a candidate until its appearance has been verified and the required approval obtained.
-- Current work is local-only: do not commit, push, deploy, migrate or change DNS/hosting/account settings without subsequent user authorization.
+- Committing to a feature branch, pushing it and opening a PR is the normal way to deliver work. Do not merge, deploy, migrate or change DNS/hosting/account/repository settings (including branch protection and workflows' permissions) without explicit user authorization. If the user asks for local-only work, do not push at all.
+- A PR with visible changes must say so in its description and is merged only after both psychologists approved; technical-only PRs should state that nothing visible changes.
 
 ## Project Structure & Module Organization
 
@@ -28,6 +31,7 @@ This is a lightweight static website for **Allieri & Pagliari — Psicologhe**. 
 - `script.js` contains small progressive-enhancement interactions: the accessible mobile navigation toggle and the fixed mobile WhatsApp bar ("Scrivi a Valentina" / "Scrivi a Silvia"), injected on every page and hidden from 768 px up.
 - Pages: `index.html`, `lo-studio.html`, `come-lavoriamo.html`, `aree-intervento.html`, `chi-siamo.html`, `valentina-allieri.html`, `silvia-pagliari.html`, `contatti.html`, `faq.html`, `privacy.html`, plus `404.html` (served at any address, so it uses root-relative paths and stays `noindex` even after launch). Every page has a skip link ("Vai al contenuto") targeting `<main>`.
 - `tools/prepara-lancio.py <https://dominio>` is the one-shot launch script (stdlib only, re-runnable): removes `noindex`, adds canonical/Open Graph image/JSON-LD, writes `sitemap.xml` and `robots.txt`, optionally `CNAME`. It refuses to run while `privacy.html` still has placeholders. Do not hand-edit canonical/sitemap before the domain is confirmed.
+- `tools/indexnow.py [pagina.html ...]` notifies Bing/IndexNow (all sitemap URLs by default); the IndexNow workflow runs it automatically after each Pages build, so run it by hand only if that workflow failed. Its key is the `<key>.txt` file at the root, which must stay published. The FAQPage structured data in `faq.html` is generated from the visible questions by `tools/prepara-lancio.py`; after editing a question, regenerate it (`tools/verifica-sito.py` flags any mismatch).
 - `faq.html` contains only facts already published elsewhere on the site (plus the professional-secrecy statement, to be validated by the client). Tariffe confermate: colloquio individuale 60 €, di coppia 70 €, familiare 80 €. Do not add other unconfirmed data to it.
 - The six topics listed on the homepage ("Ansia e stress", "Difficoltà relazionali", "Autostima", "Momenti di crisi", "Problemi di coppia", "Cambiamenti e transizioni") are deliberately **static topics without a dedicated page**, per the client. Do not turn them back into links or add description pages unless asked.
 - `privacy.html` is the published privacy information page. Do not change its legal or operational information without client confirmation.
@@ -83,4 +87,4 @@ Manual testing is required for each change. Test Chrome/Firefox and a narrow vie
 
 ## Commit & Pull Request Guidelines
 
-The repository has no established commit history or convention. Use concise imperative commits, such as `Add contact section` or `Improve mobile navigation`. Keep each commit focused. Pull requests should describe the user-facing change, identify any placeholder content, and include desktop and mobile screenshots for visual changes.
+Use concise imperative commits in English, such as `Add contact section` or `Improve mobile navigation`. Keep each commit and each PR focused on one topic. Write PR titles and descriptions in Italian for the user: what changes for visitors (or "nessuna modifica visibile"), checks run, placeholder or unconfirmed content, and what to do after merge. Include desktop and mobile screenshots for visual changes. After a PR is merged, switch back to `main`, `git pull --ff-only origin main` and delete the local branch.

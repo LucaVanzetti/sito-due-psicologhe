@@ -14,6 +14,7 @@ Si ferma se privacy.html contiene ancora segnaposto, a meno di --force.
 I dati strutturati contengono solo informazioni già pubbliche e confermate sul sito:
 orari e telefono dello studio vanno aggiunti solo dopo la conferma delle professioniste.
 """
+import html
 import json
 import re
 import subprocess
@@ -80,7 +81,23 @@ def person(base, page, name, job, portrait, number, email, same_as=None):
     return data
 
 
-def structured_data(page, base):
+def faq_items(text):
+    """Domande e risposte lette dalla pagina, così i dati coincidono sempre con il testo visibile."""
+    section = re.search(r'<section class="faq"[^>]*>(.*?)</section>', text, re.S)
+    if not section:
+        die('faq.html: sezione delle domande non trovata')
+    clean = lambda s: ' '.join(html.unescape(re.sub(r'<[^>]+>', '', s)).split())
+    pairs = re.findall(r'<article>\s*<h2>(.*?)</h2>\s*<p>(.*?)</p>\s*</article>', section.group(1), re.S)
+    return [{'@type': 'Question', 'name': clean(q),
+             'acceptedAnswer': {'@type': 'Answer', 'text': clean(a)}} for q, a in pairs]
+
+
+def offer(name, price):
+    return {'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': name},
+            'price': price, 'priceCurrency': 'EUR'}
+
+
+def structured_data(page, base, text=''):
     people = {
         'valentina-allieri.html': person(
             base, 'valentina-allieri.html', 'Valentina Allieri', 'Psicologa',
@@ -115,10 +132,15 @@ def structured_data(page, base):
         'areaServed': 'Roncello (MB) e online',
         # Tariffe confermate: individuale 60 €, coppia 70 €, familiare 80 €.
         'priceRange': '60–80 €',
+        'makesOffer': [offer('Colloquio individuale', '60'), offer('Colloquio di coppia', '70'),
+                       offer('Colloquio familiare', '80')],
         'employee': [{'@id': p['@id']} for p in people.values()],
     }
     if page == 'index.html':
         return {'@context': 'https://schema.org', '@graph': [website, org]}
+    if page == 'faq.html':
+        return {'@context': 'https://schema.org', '@type': 'FAQPage', '@id': f'{base}/faq.html#faq',
+                'inLanguage': 'it-IT', 'isPartOf': {'@id': f'{base}/#sito'}, 'mainEntity': faq_items(text)}
     if page in people:
         return {'@context': 'https://schema.org', **people[page]}
     return None
@@ -153,7 +175,7 @@ def seo_block(page, base, head):
         '<meta content="Allieri &amp; Pagliari — Psicologhe a Roncello e online" property="og:image:alt"/>',
         '<meta content="summary_large_image" name="twitter:card"/>',
     ]
-    data = structured_data(page, base)
+    data = structured_data(page, base, head)
     if data:
         lines.append('<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + '</script>')
     lines.append(END)
