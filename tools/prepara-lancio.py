@@ -84,11 +84,13 @@ def structured_data(page, base):
         'valentina-allieri.html': person(
             base, 'valentina-allieri.html', 'Valentina Allieri', 'Psicologa',
             'valentina-allieri-800.webp', '28771',
-            ['https://www.miodottore.it/profilo/valentina-allieri'],
+            ['https://www.miodottore.it/profilo/valentina-allieri',
+             'https://maps.google.com/?cid=12897469537335808521'],
         ),
         'silvia-pagliari.html': person(
             base, 'silvia-pagliari.html', 'Silvia Pagliari', 'Psicologa clinica',
             'silvia-pagliari-800.webp', '29057',
+            ['https://maps.google.com/?cid=11528914772213950941'],
         ),
     }
     website = {
