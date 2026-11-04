@@ -9,7 +9,7 @@ git fetch origin && git status -sb && git pull --ff-only origin main
 ```
 
 - If the pull is not a clean fast-forward (diverged history, local uncommitted changes that conflict), stop and tell the user before touching any file.
-- Finish implementation tasks with a focused commit and `git push origin main`, except when the user explicitly requests local-only work. Never publish local-only work without subsequent authorization.
+- `main` is protected: never commit or push to it directly. Work on a dedicated branch, push it and open a pull request; the user reviews and merges every PR. Never publish local-only work without subsequent authorization.
 - `private/` is git-ignored, so it is **not** synchronised between devices (client checklist, briefing, original images and fonts live there). If a file in `private/` is needed and missing, ask the user instead of recreating it.
 
 ## Approval boundary
@@ -28,6 +28,7 @@ This is a lightweight static website for **Allieri & Pagliari — Psicologhe**. 
 - `script.js` contains small progressive-enhancement interactions: the accessible mobile navigation toggle and the fixed mobile WhatsApp bar ("Scrivi a Valentina" / "Scrivi a Silvia"), injected on every page and hidden from 768 px up.
 - Pages: `index.html`, `lo-studio.html`, `come-lavoriamo.html`, `aree-intervento.html`, `chi-siamo.html`, `valentina-allieri.html`, `silvia-pagliari.html`, `contatti.html`, `faq.html`, `privacy.html`, plus `404.html` (served at any address, so it uses root-relative paths and stays `noindex` even after launch). Every page has a skip link ("Vai al contenuto") targeting `<main>`.
 - `tools/prepara-lancio.py <https://dominio>` is the one-shot launch script (stdlib only, re-runnable): removes `noindex`, adds canonical/Open Graph image/JSON-LD, writes `sitemap.xml` and `robots.txt`, optionally `CNAME`. It refuses to run while `privacy.html` still has placeholders. Do not hand-edit canonical/sitemap before the domain is confirmed.
+- `tools/indexnow.py [pagina.html ...]` notifies Bing/IndexNow after a change is live (all sitemap URLs by default). Its key is the `<key>.txt` file at the root, which must stay published. The FAQPage structured data in `faq.html` is generated from the visible questions by `tools/prepara-lancio.py`; after editing a question, regenerate it (`tools/verifica-sito.py` flags any mismatch).
 - `faq.html` contains only facts already published elsewhere on the site (plus the professional-secrecy statement, to be validated by the client). Tariffe confermate: colloquio individuale 60 €, di coppia 70 €, familiare 80 €. Do not add other unconfirmed data to it.
 - The six topics listed on the homepage ("Ansia e stress", "Difficoltà relazionali", "Autostima", "Momenti di crisi", "Problemi di coppia", "Cambiamenti e transizioni") are deliberately **static topics without a dedicated page**, per the client. Do not turn them back into links or add description pages unless asked.
 - `privacy.html` is the published privacy information page. Do not change its legal or operational information without client confirmation.

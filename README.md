@@ -66,11 +66,15 @@ Eseguire `python3 tools/verifica-sito.py` e `node --check script.js`, poi la ver
 
 La documentazione tecnica non attesta gli adempimenti operativi o legali delle professioniste. I materiali locali in `private/` non sono sincronizzati né pubblicabili.
 
+Il controllo verifica anche che i dati strutturati delle domande frequenti coincidano con le domande visibili in `faq.html`: dopo averne modificata una, rigenerarli con `python3 tools/prepara-lancio.py https://www.allieriepagliari.it`.
+
+Dopo ogni pubblicazione, `python3 tools/indexnow.py` avvisa Bing e gli altri motori IndexNow (si possono indicare solo le pagine cambiate, es. `faq.html`). La chiave è il file `<chiave>.txt` nella radice e deve restare pubblicato. Per Google resta la richiesta di indicizzazione in Search Console.
+
 Il generatore `tools/prepara-lancio.py` è uno strumento di manutenzione, non va eseguito per il normale aggiornamento dei contenuti: può riscrivere metadati e file di scansione. Il dominio definitivo è già configurato.
 
 ## Lavorare da più dispositivi
 
-GitHub (`origin/main`) è la fonte unica per la versione pubblicata. Prima di modificare, verificare lo stato e sincronizzare quando consentito. Una richiesta esplicita di lavoro locale sospende commit e push fino a successiva autorizzazione.
+GitHub (`origin/main`) è la fonte unica per la versione pubblicata. Prima di modificare, verificare lo stato e sincronizzare quando consentito. `main` è protetto: ogni modifica passa da un branch dedicato e da una pull request, che va approvata e unita dal responsabile del repository. Una richiesta esplicita di lavoro locale sospende commit e push fino a successiva autorizzazione.
 
 ## Approvazioni
 
