@@ -63,7 +63,7 @@ def credential(number):
     }
 
 
-def person(base, page, name, job, portrait, number, same_as=None):
+def person(base, page, name, job, portrait, number, email, same_as=None):
     data = {
         '@type': 'Person',
         '@id': f'{base}/{page}#persona',
@@ -71,6 +71,7 @@ def person(base, page, name, job, portrait, number, same_as=None):
         'jobTitle': job,
         'url': f'{base}/{page}',
         'image': f'{base}/assets/images/portraits/{portrait}',
+        'email': email,
         'hasCredential': credential(number),
         'worksFor': {'@id': f'{base}/#studio'},
     }
@@ -83,13 +84,13 @@ def structured_data(page, base):
     people = {
         'valentina-allieri.html': person(
             base, 'valentina-allieri.html', 'Valentina Allieri', 'Psicologa',
-            'valentina-allieri-800.webp', '28771',
+            'valentina-allieri-800.webp', '28771', 'valentina.allieri.psi@gmail.com',
             ['https://www.miodottore.it/profilo/valentina-allieri',
              'https://maps.google.com/?cid=12897469537335808521'],
         ),
         'silvia-pagliari.html': person(
             base, 'silvia-pagliari.html', 'Silvia Pagliari', 'Psicologa clinica',
-            'silvia-pagliari-800.webp', '29057',
+            'silvia-pagliari-800.webp', '29057', 'silviapagliari.psi@gmail.com',
             ['https://maps.google.com/?cid=11528914772213950941'],
         ),
     }
@@ -109,6 +110,8 @@ def structured_data(page, base):
         'url': f'{base}/',
         'image': f'{base}/{OG_IMAGE}',
         'address': ADDRESS,
+        # Nessun telefono: i numeri sul sito sono proposti solo per WhatsApp.
+        'email': 'contatti@allieriepagliari.it',
         'areaServed': 'Roncello (MB) e online',
         # Tariffe confermate: individuale 60 €, coppia 70 €, familiare 80 €.
         'priceRange': '60–80 €',
