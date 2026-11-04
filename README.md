@@ -42,7 +42,11 @@ Il sito pubblico è https://www.allieriepagliari.it/, su GitHub Pages da `main` 
 
 I collegamenti alla homepage usano `/`; la canonical della homepage è il dominio con slash finale. GitHub Pages serve ancora `/index.html` con 200. Il redirect storico verso `lo-studio.html` usa un meta refresh immediato.
 
-Per questa fase le modifiche restano locali: nessun push o cambio di hosting senza richiesta. Il sito pubblico non cambia con il solo salvataggio dei file.
+Il sito pubblico cambia solo quando una pull request viene unita in `main`: GitHub Pages pubblica automaticamente, poi il workflow `Avvisa Bing (IndexNow)` notifica Bing appena sitemap e chiave online coincidono con il repository. Nessun cambio di hosting senza richiesta.
+
+## CI
+
+Il workflow `Verifica sito` (`.github/workflows/verifica.yml`) esegue `tools/verifica-sito.py`, `node --check script.js` e la compilazione degli script Python su ogni pull request e su `main`. Il suo esito positivo è obbligatorio per unire una PR.
 
 ## Contatto condiviso e servizi esterni
 
@@ -68,7 +72,7 @@ La documentazione tecnica non attesta gli adempimenti operativi o legali delle p
 
 Il controllo verifica anche che i dati strutturati delle domande frequenti coincidano con le domande visibili in `faq.html`: dopo averne modificata una, rigenerarli con `python3 tools/prepara-lancio.py https://www.allieriepagliari.it`.
 
-Dopo ogni pubblicazione, `python3 tools/indexnow.py` avvisa Bing e gli altri motori IndexNow (si possono indicare solo le pagine cambiate, es. `faq.html`). La chiave è il file `<chiave>.txt` nella radice e deve restare pubblicato. Per Google resta la richiesta di indicizzazione in Search Console.
+Dopo ogni pubblicazione il workflow IndexNow avvisa Bing e gli altri motori IndexNow; a mano, `python3 tools/indexnow.py` fa lo stesso (si possono indicare solo le pagine cambiate, es. `faq.html`). La chiave è il file `<chiave>.txt` nella radice e deve restare pubblicato. Per Google resta la richiesta di indicizzazione in Search Console.
 
 Il generatore `tools/prepara-lancio.py` è uno strumento di manutenzione, non va eseguito per il normale aggiornamento dei contenuti: può riscrivere metadati e file di scansione. Il dominio definitivo è già configurato.
 

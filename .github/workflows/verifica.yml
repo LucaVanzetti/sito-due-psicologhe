@@ -1,0 +1,26 @@
+# Controlli automatici su ogni pull request e su main.
+# Il job "verifica" è obbligatorio per unire una PR (protezione di main).
+name: Verifica sito
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verifica:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # serve la storia git per controllare i lastmod della sitemap
+      - name: Collegamenti, sitemap, canonical e dati strutturati
+        run: python3 tools/verifica-sito.py
+      - name: Sintassi JavaScript
+        run: node --check script.js
+      - name: Sintassi degli script Python
+        run: python3 -m py_compile tools/*.py

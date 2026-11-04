@@ -1,0 +1,35 @@
+# Dopo ogni pubblicazione riuscita su GitHub Pages avvisa Bing tramite IndexNow.
+# Google non usa IndexNow: per Google resta Search Console.
+name: Avvisa Bing (IndexNow)
+
+on:
+  page_build:
+  workflow_dispatch:  # lancio manuale dalla scheda Actions
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: true
+
+jobs:
+  indexnow:
+    if: github.event_name == 'workflow_dispatch' || github.event.build.status == 'built'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Attendere che sitemap e chiave pubblicate coincidano con il repository
+        run: |
+          base="https://$(cat CNAME)"
+          key=$(for f in *.txt; do [ "$(cat "$f")" = "${f%.txt}" ] && echo "$f"; done)
+          for i in $(seq 1 30); do
+            if curl -fsS "$base/sitemap.xml?v=$GITHUB_SHA" | cmp -s - sitemap.xml \
+              && curl -fsS "$base/$key?v=$GITHUB_SHA" | cmp -s - "$key"; then exit 0; fi
+            sleep 10
+          done
+          echo "Sitemap o chiave IndexNow non ancora aggiornate online" >&2
+          exit 1
+      - name: Inviare le URL della sitemap
+        run: python3 tools/indexnow.py
