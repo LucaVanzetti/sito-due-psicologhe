@@ -9,8 +9,15 @@ git fetch origin && git status -sb && git pull --ff-only origin main
 ```
 
 - If the pull is not a clean fast-forward (diverged history, local uncommitted changes that conflict), stop and tell the user before touching any file.
-- Finish every task with a focused commit and `git push origin main`; never leave work only on one device.
+- Finish implementation tasks with a focused commit and `git push origin main`, except when the user explicitly requests local-only work. Never publish local-only work without subsequent authorization.
 - `private/` is git-ignored, so it is **not** synchronised between devices (client checklist, briefing, original images and fonts live there). If a file in `private/` is needed and missing, ask the user instead of recreating it.
+
+## Approval boundary
+
+- Technical maintenance that preserves visitor-facing content and appearance can proceed locally.
+- Changes to visible text, images, typography, layout or other presentation require approval from both psychologists before application.
+- Keep visual proposals separate from technical changes. A smaller font file is only a candidate until its appearance has been verified and the required approval obtained.
+- Current work is local-only: do not commit, push, deploy, migrate or change DNS/hosting/account settings without subsequent user authorization.
 
 ## Project Structure & Module Organization
 
@@ -23,7 +30,7 @@ This is a lightweight static website for **Allieri & Pagliari — Psicologhe**. 
 - `tools/prepara-lancio.py <https://dominio>` is the one-shot launch script (stdlib only, re-runnable): removes `noindex`, adds canonical/Open Graph image/JSON-LD, writes `sitemap.xml` and `robots.txt`, optionally `CNAME`. It refuses to run while `privacy.html` still has placeholders. Do not hand-edit canonical/sitemap before the domain is confirmed.
 - `faq.html` contains only facts already published elsewhere on the site (plus the professional-secrecy statement, to be validated by the client). Tariffe confermate: colloquio individuale 60 €, di coppia 70 €, familiare 80 €. Do not add other unconfirmed data to it.
 - The six topics listed on the homepage ("Ansia e stress", "Difficoltà relazionali", "Autostima", "Momenti di crisi", "Problemi di coppia", "Cambiamenti e transizioni") are deliberately **static topics without a dedicated page**, per the client. Do not turn them back into links or add description pages unless asked.
-- `privacy.html` is a draft privacy information page. It contains explicit placeholders and must not be treated as publish-ready until the indicated legal and operational data are confirmed.
+- `privacy.html` is the published privacy information page. Do not change its legal or operational information without client confirmation.
 - La checklist delle conferme del cliente e i materiali di briefing sono conservati localmente in `private/` e non devono essere aggiunti al repository pubblico.
 - `README.md` documents the current project status, local preview, checks, and deployment prerequisites.
 
@@ -31,7 +38,7 @@ Place future static assets in an `assets/` directory, grouped by purpose (for ex
 
 ### Fonts and icons
 
-- Fonts are local **woff2** subsets (Outfit, Nunito Sans; latin only) in `assets/fonts/`, preloaded in every `<head>`. Originals are in `private/originals/fonts/`. Do not add font files that are not referenced in `styles.css`.
+- Fonts are local **woff2** files (Outfit, Nunito Sans and Merriweather) in `assets/fonts/`, preloaded in every `<head>`. Originals are in `private/originals/fonts/`. Do not add font files that are not referenced in `styles.css`.
 - The logo is the "archi" mark (`assets/images/logo-archi-96.webp` / `-192.webp`, transparent background, 54×45 px in the header). Favicons are in `assets/icons/` and `favicon.ico`; `assets/images/og-allieri-pagliari.jpg` (1200×630) is the social preview and is referenced only by the launch script because Open Graph needs an absolute URL.
 
 ### Images
@@ -62,13 +69,13 @@ All visitor-facing copy is Italian and professional. The current copy mixes `Lei
 
 ## Current Site State
 
-- Review preview only: every page carries `noindex, nofollow, noarchive` and `robots.txt` blocks crawlers. Remove both before the public launch.
+- Published at https://www.allieriepagliari.it/ on GitHub Pages; DNS on OVH. The nine sitemap pages are indexable and robots.txt allows crawling. Only 404.html and the historical chi-siamo.html redirect remain noindex.
 - Contact policy: both psychologists are contacted by **WhatsApp** as the main channel (Valentina `393669539230`, Silvia `393534259158`; the latter is also her phone number and is shown as a secondary `tel:` link on the contact page). Valentina also has a MioDottore link. The client confirmed that Silvia's number is correct and active on WhatsApp.
 - Tariffe confermate: colloquio individuale 60 €, di coppia 70 €, familiare 80 €.
 - Homepage hero: the tree illustration is full-bleed; the dark overlay is a gradient only behind the text (from the bottom on mobile, from the left on desktop), not over the whole image.
 - Mobile layout: profile cards on the homepage stack in one column; topic chips use a two-column grid; the fixed WhatsApp bar needs `padding-bottom` on `body` (already set below 768 px).
 - Focus ring is `--ink` (and `--soft` on dark areas) to keep a 3:1 contrast; `--accent` is currently unused.
-- `privacy.html` is still a draft with placeholders; the studio entrance photo (one of the psychologists) is authorised by the client.
+- Do not change privacy text or infer its legal readiness from technical publication; the studio entrance photo is authorised by the client.
 
 ## Testing Guidelines
 

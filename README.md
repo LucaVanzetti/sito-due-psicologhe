@@ -8,13 +8,13 @@ Sito statico dello studio di Valentina Allieri e Silvia Pagliari. Il progetto no
 - `lo-studio.html` — studio e modalità degli incontri
 - `come-lavoriamo.html` — approccio e servizi
 - `aree-intervento.html` — aree di intervento
-- `chi-siamo.html` — presentazione delle professioniste
+- `chi-siamo.html` — redirect storico verso Lo studio
 - `valentina-allieri.html` e `silvia-pagliari.html` — profili individuali
 - `contatti.html` — contatti (WhatsApp per entrambe) e informazioni pratiche
 - `faq.html` — domande frequenti (solo informazioni già presenti nel sito)
 - `404.html` — pagina non trovata (percorsi dalla radice, resta `noindex`)
 - `privacy.html` — informativa per sito e primo contatto condiviso; prima del lancio le professioniste devono sottoscrivere e applicare l’accordo operativo sulla casella comune
-- `robots.txt` — istruzioni per i crawler della sola anteprima
+- `robots.txt` — scansione consentita e riferimento alla sitemap
 
 Le sei aree della homepage (Ansia e stress, Difficoltà relazionali, Autostima, Momenti di crisi, Problemi di coppia, Cambiamenti e transizioni) sono **solo elenco di temi**, senza pagina dedicata.
 
@@ -36,26 +36,13 @@ Aprire `http://localhost:8000` e verificare almeno:
 - visibilità del focus da tastiera;
 - collegamenti, CTA WhatsApp, telefoniche ed email.
 
-## Anteprima per la revisione
+## Pubblicazione attuale
 
-L’anteprima sarà pubblicata con GitHub Pages e condivisa alle professioniste come semplice link: non devono usare GitHub né Git per visualizzarla.
+Il sito pubblico è https://www.allieriepagliari.it/, su GitHub Pages da `main` nella cartella principale; DNS gestiti da OVH e HTTPS forzato. Le nove pagine della sitemap sono scansionabili. `404.html` e il redirect storico `chi-siamo.html` restano esclusi dall’indicizzazione.
 
-L’attuale configurazione è **solo per la revisione**:
+I collegamenti alla homepage usano `/`; la canonical della homepage è il dominio con slash finale. GitHub Pages serve ancora `/index.html` con 200. Il redirect storico verso `lo-studio.html` usa un meta refresh immediato.
 
-- tutte le pagine hanno il meta tag `noindex, nofollow, noarchive`;
-- `robots.txt` chiede ai crawler di non analizzare il sito;
-- questi accorgimenti riducono l’indicizzazione, ma **non rendono il link privato**: chi ne entra in possesso può comunque aprirlo;
-- prima della pubblicazione sul dominio definitivo vanno rimossi il meta tag `noindex` da tutte le pagine e il blocco in `robots.txt`.
-
-### Pubblicare l’anteprima su GitHub Pages
-
-1. In GitHub, aprire il repository e andare in **Settings → Pages**.
-2. In **Build and deployment**, scegliere **Deploy from a branch**.
-3. Selezionare il branch `main` e la cartella `/(root)`, quindi salvare.
-4. Attendere la pubblicazione e copiare l’URL generato da GitHub Pages.
-5. Condividere l’URL solo con Valentina e Silvia per raccogliere commenti via WhatsApp o email.
-
-Per aggiornare l’anteprima, modificare i file, eseguire i controlli sotto indicati e inviare le modifiche al branch pubblicato. GitHub Pages aggiorna il link automaticamente dopo la pubblicazione.
+Per questa fase le modifiche restano locali: nessun push o cambio di hosting senza richiesta. Il sito pubblico non cambia con il solo salvataggio dei file.
 
 ## Contatto condiviso e servizi esterni
 
@@ -73,32 +60,31 @@ node --check script.js
 
 Non è presente una suite automatica. Prima di ogni pubblicazione eseguire i controlli manuali indicati sopra e verificare che tutti i dati professionali, il form e i testi legali siano confermati.
 
-## Stato di pubblicazione
+## Verifiche tecniche
 
-Il sito è pronto per una **anteprima noindex**, ma non per la pubblicazione definitiva finché non saranno completati i punti della checklist locale del progetto, in particolare:
+Eseguire `python3 tools/verifica-sito.py` e `node --check script.js`, poi la verifica manuale desktop/mobile indicata sopra. Il controllo locale verifica collegamenti, frammenti, risorse responsive, canonical e sitemap senza rete e senza dipendenze aggiuntive.
 
-- sottoscrizione e applicazione dell’accordo operativo per il contatto condiviso;
-- verifica accessi, 2FA, inoltri e cancellazione periodica della casella OVH;
-- fotografie autorizzate e immagini con licenza d’uso adeguata;
-- dominio pubblico definitivo e configurazione DNS;
-- Google Business Profile e configurazione SEO tecnica;
-- rimozione di `noindex` e aggiornamento di `robots.txt` al passaggio alla versione definitiva.
+La documentazione tecnica non attesta gli adempimenti operativi o legali delle professioniste. I materiali locali in `private/` non sono sincronizzati né pubblicabili.
 
-La checklist e il questionario del cliente sono conservati solo nella cartella locale ignorata `private/`; non devono essere aggiunti al repository pubblico.
+Il generatore `tools/prepara-lancio.py` è uno strumento di manutenzione, non va eseguito per il normale aggiornamento dei contenuti: può riscrivere metadati e file di scansione. Il dominio definitivo è già configurato.
 
 ## Lavorare da più dispositivi
 
-GitHub (`origin/main`) è la fonte unica. All'inizio di ogni sessione: `git fetch origin && git pull --ff-only origin main`; a fine lavoro: commit e `git push origin main`. La cartella `private/` non è sincronizzata (è ignorata da Git).
+GitHub (`origin/main`) è la fonte unica per la versione pubblicata. Prima di modificare, verificare lo stato e sincronizzare quando consentito. Una richiesta esplicita di lavoro locale sospende commit e push fino a successiva autorizzazione.
 
-## Lancio sul dominio definitivo
+## Approvazioni
 
-Quando dominio e privacy sono pronti: `python3 tools/prepara-lancio.py https://www.dominio.it --cname` (aggiunge canonical, Open Graph, dati strutturati, `sitemap.xml`, `robots.txt` e rimuove `noindex`). Poi inviare la sitemap a Search Console e creare il Google Business Profile.
+La manutenzione tecnica locale può procedere mantenendo contenuti e aspetto attuali. Le modifiche a testi visibili, immagini, tipografia e disposizione richiedono l’approvazione di entrambe le psicologhe. La pubblicazione rimane sospesa durante la fase locale.
 
-## SEO e ricerche AI
+## Misure ancora da raccogliere
 
-Il sito contiene testo HTML indicizzabile, pagine tematiche e meta description. Per aumentare la trovabilità locale dopo la pubblicazione definitiva servono dominio, sitemap, Search Console, Google Business Profile e dati strutturati coerenti con i contenuti visibili.
+- Lighthouse mobile ripetuto e Core Web Vitals, se disponibili.
+- Controllo manuale Chrome/Firefox a 375 px e desktop.
+- Storico disponibilità da più reti e dettagli delle esclusioni Google/Bing.
+- Catene complete di redirect, DNS autorevoli e scadenza del certificato.
+- Valutazione delle condizioni d’uso dell’hosting per il sito professionale.
 
-Non esiste un markup speciale che garantisca apparizioni nelle risposte AI: la priorità è pubblicare contenuti originali, accurati, locali e utili, con struttura tecnica chiara e pagine accessibili.
+Non ci sono prove che l’hosting causi la mancata indicizzazione delle pagine interne. Nessuna migrazione è necessaria per applicare i miglioramenti locali.
 
 ## Repository
 
