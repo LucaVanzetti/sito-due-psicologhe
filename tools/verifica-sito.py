@@ -3,6 +3,8 @@
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit, unquote
+import json
+import subprocess
 import sys
 import re
 import xml.etree.ElementTree as ET
@@ -78,9 +80,35 @@ for name, page in pages.items():
     if u.path in ('index.html', '/index.html'):
       errors.append(f'{name}: link homepage da uniformare {link}')
 
-actual = [e.text for e in ET.parse(ROOT / 'sitemap.xml').iter('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
+for name in pages:
+  for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>', (ROOT / name).read_text(), re.S):
+    try:
+      json.loads(block)
+    except ValueError:
+      errors.append(f'{name}: dati strutturati JSON-LD non validi')
+
+
+def last_commit(name):
+  try:
+    out = subprocess.run(['git', 'log', '-1', '--format=%cs', '--', name], cwd=ROOT,
+                         capture_output=True, text=True, check=True).stdout.strip()
+    return out or None
+  except (OSError, subprocess.CalledProcessError):
+    return None
+
+
+NS = '{http://www.sitemaps.org/schemas/sitemap/0.9}'
+entries = list(ET.parse(ROOT / 'sitemap.xml').iter(NS + 'url'))
+actual = [e.findtext(NS + 'loc') for e in entries]
 if set(actual) != expected or len(actual) != len(expected):
   errors.append('Sitemap diversa dall’insieme delle pagine canoniche')
+for entry in entries:
+  loc, mod = entry.findtext(NS + 'loc'), entry.findtext(NS + 'lastmod')
+  name = loc.removeprefix(BASE + '/') or 'index.html'
+  if not mod or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', mod):
+    errors.append(f'Sitemap: lastmod mancante o non valido per {name}')
+  elif (committed := last_commit(name)) and mod < committed:
+    errors.append(f'Sitemap: lastmod di {name} ({mod}) più vecchio dell’ultima modifica ({committed})')
 robots = (ROOT / 'robots.txt').read_text()
 if 'Disallow: /' in robots or f'Sitemap: {BASE}/sitemap.xml' not in robots:
   errors.append('Controllare robots.txt')

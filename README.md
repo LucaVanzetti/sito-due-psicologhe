@@ -62,7 +62,7 @@ Non è presente una suite automatica. Prima di ogni pubblicazione eseguire i con
 
 ## Verifiche tecniche
 
-Eseguire `python3 tools/verifica-sito.py` e `node --check script.js`, poi la verifica manuale desktop/mobile indicata sopra. Il controllo locale verifica collegamenti, frammenti, risorse responsive, canonical e sitemap senza rete e senza dipendenze aggiuntive.
+Eseguire `python3 tools/verifica-sito.py` e `node --check script.js`, poi la verifica manuale desktop/mobile indicata sopra. Il controllo locale verifica collegamenti, frammenti, risorse responsive, canonical, sitemap (incluso `lastmod`) e validità dei dati strutturati JSON-LD senza rete e senza dipendenze aggiuntive. Dopo aver modificato una pagina, aggiornarne il `lastmod` in `sitemap.xml`: il controllo segnala le date più vecchie dell’ultimo commit della pagina.
 
 La documentazione tecnica non attesta gli adempimenti operativi o legali delle professioniste. I materiali locali in `private/` non sono sincronizzati né pubblicabili.
 

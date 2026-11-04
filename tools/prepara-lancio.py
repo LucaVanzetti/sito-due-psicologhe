@@ -16,7 +16,9 @@ orari e telefono dello studio vanno aggiunti solo dopo la conferma delle profess
 """
 import json
 import re
+import subprocess
 import sys
+from datetime import date
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -52,7 +54,52 @@ def parse_args(argv):
     return f'https://{url.netloc}', flags
 
 
+def credential(number):
+    return {
+        '@type': 'EducationalOccupationalCredential',
+        'credentialCategory': 'Iscrizione all’albo professionale',
+        'name': f'Ordine degli Psicologi della Lombardia n. {number}',
+        'recognizedBy': {'@type': 'Organization', 'name': 'Ordine degli Psicologi della Lombardia'},
+    }
+
+
+def person(base, page, name, job, portrait, number, same_as=None):
+    data = {
+        '@type': 'Person',
+        '@id': f'{base}/{page}#persona',
+        'name': name,
+        'jobTitle': job,
+        'url': f'{base}/{page}',
+        'image': f'{base}/assets/images/portraits/{portrait}',
+        'hasCredential': credential(number),
+        'worksFor': {'@id': f'{base}/#studio'},
+    }
+    if same_as:
+        data['sameAs'] = same_as
+    return data
+
+
 def structured_data(page, base):
+    people = {
+        'valentina-allieri.html': person(
+            base, 'valentina-allieri.html', 'Valentina Allieri', 'Psicologa',
+            'valentina-allieri-800.webp', '28771',
+            ['https://www.miodottore.it/profilo/valentina-allieri'],
+        ),
+        'silvia-pagliari.html': person(
+            base, 'silvia-pagliari.html', 'Silvia Pagliari', 'Psicologa clinica',
+            'silvia-pagliari-800.webp', '29057',
+        ),
+    }
+    website = {
+        '@type': 'WebSite',
+        '@id': f'{base}/#sito',
+        'name': 'Allieri & Pagliari',
+        'alternateName': 'Allieri & Pagliari — Psicologhe',
+        'url': f'{base}/',
+        'inLanguage': 'it-IT',
+        'publisher': {'@id': f'{base}/#studio'},
+    }
     org = {
         '@type': 'ProfessionalService',
         '@id': f'{base}/#studio',
@@ -61,23 +108,30 @@ def structured_data(page, base):
         'image': f'{base}/{OG_IMAGE}',
         'address': ADDRESS,
         'areaServed': 'Roncello (MB) e online',
-    }
-    people = {
-        'valentina-allieri.html': {
-            '@type': 'Person', 'name': 'Valentina Allieri', 'jobTitle': 'Psicologa clinica',
-            'url': f'{base}/valentina-allieri.html', 'worksFor': {'@id': f'{base}/#studio'},
-            'sameAs': ['https://www.miodottore.it/profilo/valentina-allieri'],
-        },
-        'silvia-pagliari.html': {
-            '@type': 'Person', 'name': 'Silvia Pagliari', 'jobTitle': 'Psicologa clinica',
-            'url': f'{base}/silvia-pagliari.html', 'worksFor': {'@id': f'{base}/#studio'},
-        },
+        # Tariffe confermate: individuale 60 €, coppia 70 €, familiare 80 €.
+        'priceRange': '60–80 €',
+        'employee': [{'@id': p['@id']} for p in people.values()],
     }
     if page == 'index.html':
-        return {'@context': 'https://schema.org', **org}
+        return {'@context': 'https://schema.org', '@graph': [website, org]}
     if page in people:
         return {'@context': 'https://schema.org', **people[page]}
     return None
+
+
+def lastmod(file):
+    """Data dell'ultimo commit della pagina, o di oggi se ha modifiche non ancora registrate."""
+    try:
+        dirty = subprocess.run(['git', 'status', '--porcelain', '--', file.name], cwd=ROOT,
+                               capture_output=True, text=True, check=True).stdout.strip()
+        if not dirty:
+            day = subprocess.run(['git', 'log', '-1', '--format=%cs', '--', file.name], cwd=ROOT,
+                                 capture_output=True, text=True, check=True).stdout.strip()
+            if day:
+                return day
+    except (OSError, subprocess.CalledProcessError):
+        pass
+    return date.today().isoformat()
 
 
 def seo_block(page, base, head):
@@ -109,6 +163,7 @@ def main():
         die('privacy.html contiene ancora segnaposto da completare. Usa --force solo per una prova.')
 
     pages = sorted(p.name for p in ROOT.glob('*.html') if p.name not in SKIP_PAGES)
+    changed = {}
     for page in pages:
         file = ROOT / page
         text = file.read_text(encoding='utf-8')
@@ -118,11 +173,13 @@ def main():
         if block is None:
             die(f'{page}: meta og:title mancante, esegui prima la preparazione delle pagine')
         text = text.replace('</head>', '    ' + block.rstrip() + '\n  </head>', 1)
-        if not dry:
+        if not dry and text != file.read_text(encoding='utf-8'):
             file.write_text(text, encoding='utf-8')
+        changed[page] = lastmod(file)
 
     urls = ''.join(
-        f'  <url><loc>{base}/{"" if p == "index.html" else p}</loc></url>\n' for p in pages
+        f'  <url><loc>{base}/{"" if p == "index.html" else p}</loc><lastmod>{changed[p]}</lastmod></url>\n'
+        for p in pages
     )
     sitemap = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n'
     robots = f'User-agent: *\nAllow: /\n\nSitemap: {base}/sitemap.xml\n'
