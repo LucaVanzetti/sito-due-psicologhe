@@ -1,8 +1,10 @@
-# Dopo ogni pubblicazione riuscita su GitHub Pages avvisa Bing tramite IndexNow.
+# Dopo ogni aggiornamento di main attende la pubblicazione e avvisa Bing tramite IndexNow.
 # Google non usa IndexNow: per Google resta Search Console.
 name: Avvisa Bing (IndexNow)
 
 on:
+  push:
+    branches: [main]
   workflow_run:
     workflows: ["pages build and deployment"]
     types: [completed]
@@ -18,12 +20,13 @@ concurrency:
 jobs:
   indexnow:
     if: >-
-      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
       (github.event.workflow_run.conclusion == 'success' &&
        github.event.workflow_run.head_branch == 'main' &&
        github.event.workflow_run.head_sha == github.sha)
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - name: Attendere che le pagine, la sitemap e la chiave siano pubblicate
