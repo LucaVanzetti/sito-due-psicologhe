@@ -29,11 +29,11 @@ def published():
 
 
 if __name__ == '__main__':
-    for attempt in range(30):
+    for attempt in range(60):
         if published():
             print('Pagine, sitemap e chiave pubblicate correttamente')
             break
-        if attempt < 29:
+        if attempt < 59:
             time.sleep(10)
     else:
         raise SystemExit('Pubblicazione non ancora aggiornata: IndexNow non inviato')
