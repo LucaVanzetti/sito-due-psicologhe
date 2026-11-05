@@ -72,7 +72,7 @@ La documentazione tecnica non attesta gli adempimenti operativi o legali delle p
 
 Il controllo verifica anche che i dati strutturati delle domande frequenti coincidano con le domande visibili in `faq.html`: dopo averne modificata una, rigenerarli con `python3 tools/prepara-lancio.py https://www.allieriepagliari.it`.
 
-Dopo ogni pubblicazione il workflow IndexNow avvisa Bing e gli altri motori IndexNow; a mano, `python3 tools/indexnow.py` fa lo stesso (si possono indicare solo le pagine cambiate, es. `faq.html`). La chiave è il file `<chiave>.txt` nella radice e deve restare pubblicato. Per Google resta la richiesta di indicizzazione in Search Console.
+Dopo una pubblicazione GitHub Pages riuscita, il workflow IndexNow attende che tutte le pagine della sitemap, la sitemap stessa e la chiave coincidano con la versione pubblicata, poi avvisa Bing e gli altri motori IndexNow. Controllare la prima esecuzione dopo il merge, anche in caso di nuovo tentativo della pubblicazione. Il workflow può essere avviato manualmente dalla scheda Actions; in alternativa, `python3 tools/indexnow.py` invia a mano le URL (si possono indicare solo le pagine cambiate, es. `faq.html`). La chiave è il file `<chiave>.txt` nella radice e deve restare pubblicato. Per Google resta la richiesta di indicizzazione in Search Console.
 
 Il generatore `tools/prepara-lancio.py` è uno strumento di manutenzione, non va eseguito per il normale aggiornamento dei contenuti: può riscrivere metadati e file di scansione. Il dominio definitivo è già configurato.
 
