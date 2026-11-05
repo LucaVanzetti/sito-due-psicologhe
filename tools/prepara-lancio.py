@@ -92,11 +92,6 @@ def faq_items(text):
              'acceptedAnswer': {'@type': 'Answer', 'text': clean(a)}} for q, a in pairs]
 
 
-def offer(name, price):
-    return {'@type': 'Offer', 'itemOffered': {'@type': 'Service', 'name': name},
-            'price': price, 'priceCurrency': 'EUR'}
-
-
 def structured_data(page, base, text=''):
     people = {
         'valentina-allieri.html': person(
@@ -130,10 +125,6 @@ def structured_data(page, base, text=''):
         # Nessun telefono: i numeri sul sito sono proposti solo per WhatsApp.
         'email': 'contatti@allieriepagliari.it',
         'areaServed': 'Roncello (MB) e online',
-        # Tariffe confermate: individuale 60 €, coppia 70 €, familiare 80 €.
-        'priceRange': '60–80 €',
-        'makesOffer': [offer('Colloquio individuale', '60'), offer('Colloquio di coppia', '70'),
-                       offer('Colloquio familiare', '80')],
         'employee': [{'@id': p['@id']} for p in people.values()],
     }
     if page == 'index.html':

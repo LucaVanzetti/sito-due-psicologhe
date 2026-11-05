@@ -3,7 +3,9 @@
 name: Avvisa Bing (IndexNow)
 
 on:
-  page_build:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
   workflow_dispatch:  # lancio manuale dalla scheda Actions
 
 permissions:
@@ -15,21 +17,17 @@ concurrency:
 
 jobs:
   indexnow:
-    if: github.event_name == 'workflow_dispatch' || github.event.build.status == 'built'
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main' &&
+       github.event.workflow_run.head_sha == github.sha)
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Attendere che sitemap e chiave pubblicate coincidano con il repository
+      - name: Attendere che le pagine, la sitemap e la chiave siano pubblicate
         run: |
-          base="https://$(cat CNAME)"
-          key=$(for f in *.txt; do [ "$(cat "$f")" = "${f%.txt}" ] && echo "$f"; done)
-          for i in $(seq 1 30); do
-            if curl -fsS "$base/sitemap.xml?v=$GITHUB_SHA" | cmp -s - sitemap.xml \
-              && curl -fsS "$base/$key?v=$GITHUB_SHA" | cmp -s - "$key"; then exit 0; fi
-            sleep 10
-          done
-          echo "Sitemap o chiave IndexNow non ancora aggiornate online" >&2
-          exit 1
+          python3 tools/verifica-pubblicazione.py
       - name: Inviare le URL della sitemap
         run: python3 tools/indexnow.py
